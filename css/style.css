@@ -1,0 +1,121 @@
+/* Copied from http://mrdoob.github.com/three.js/examples/css3d_molecules.html */
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: #050505;
+
+	background: rgb(43,45,48); /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover, 
+	            rgba(43,45,48,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center,
+	            100%, color-stop(0%, rgba(43,45,48,1)),
+	            color-stop(100%, rgba(0,0,0,1))); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,
+	            rgba(43,45,48,1) 0%, rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,
+	            rgba(43,45,48,1) 0%, rgba(0,0,0,1) 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, rgba(43,45,48,1) 0%,
+	            rgba(0,0,0,1) 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center, rgba(43,45,48,1) 0%,
+	            rgba(0,0,0,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2b2d30',
+            endColorstr='#000000', GradientType=1); /* IE6-9 fallback */
+
+	margin: 0;
+	font-family: Arial;
+	overflow: hidden;
+}
+
+a {
+	color: #ffffff;
+}
+
+#drop_zone {
+    border: 2px dashed #bbb;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    font: 20pt bold, "Vollkorn";
+    color: #bbb;
+    bottom: 10px;
+    left: 10px;
+    width: 400px;
+    height: 100px;
+    line-height: 100px;
+}
+
+#files {
+	position: absolute;
+	bottom: 20px;
+	width: 100%;
+	background: #ffffff;
+	color: #222222;
+	padding: 5px;
+	font-family: Monospace;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+	z-index: 1;
+}
+
+#info {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	color: #ffffff;
+	padding: 5px;
+	font-family: Monospace;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+	z-index: 1;
+}
+
+#menu {
+	position: absolute;
+	bottom: 20px;
+	width: 100%;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+#topmenu {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 100%;
+	text-align: right;
+	padding: 0;
+	margin: 0;
+	z-index: 1;
+}
+
+button {
+	color: rgb(255,255,255);
+	background: transparent;
+	border: 0px;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+button:hover {
+	background-color: rgba(0,255,255,0.5);
+}
+button:active {
+	color: #000000;
+	background-color: rgba(0,255,255,1);
+}
+
+.bond {
+	width: 5px;
+	height: 10px;
+	background: #eee;
+	display: block;
+}
