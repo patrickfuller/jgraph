@@ -1,11 +1,18 @@
 graph-vis
 =========
 
-A 3D network layout and visualization tool written with three.js.
+An interactive 3D network layout and visualization tool written with three.js.
 
-A running version of this script can be found [here](http://www.patrick-fuller.com/graph-vis/).
+![](http://www.patrick-fuller.com/wp-content/uploads/2013/02/toon-graph.png)
+
+A running version of this script can be found [here](http://www.patrick-fuller.com/graph-vis/)
+for standard Lambert shading and [here](http://www.patrick-fuller.com/toon-graph-vis/)
+for toon shading. These coincide with the two current branches, which I may
+merge at some point in the future.
+
 By default, it loads `miserables.json`, but you can drag and drop to load `pinwheel.json`,
-located [here](http://www.patrick-fuller.com/graph-vis/json/pinwheel.json).
+located [here](http://www.patrick-fuller.com/graph-vis/json/pinwheel.json). You  can
+also make your own graphs using the tools shown below.
 
 Usage
 -----
