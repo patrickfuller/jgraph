@@ -1,5 +1,5 @@
 igraph
-=======
+======
 
 An interactive 3D network layout and visualization tool for the IPython notebook
 and [browsers](http://www.patrick-fuller.com/toon-graph-vis/).
@@ -17,17 +17,20 @@ PYTHONPATH. You can test the setup by typing:
 
 ```python
 import igraph
-igraph.draw([(1,2),(2,3),(3,4),(4,5),(5,2)])
+igraph.draw([(1, 2), (2, 3), (3, 4), (4, 1), (4, 5), (5, 2)])
 ```
 
 into a notebook cell. You should get the output:
 
-![]()
+![](http://www.patrick-fuller.com/wp-content/uploads/2013/03/pinwheel_example.png)
 
 You can use this in conjunction with other code for educational purposes. For
 example, consider the generation of a binary tree:
 
-![]()
+![](http://www.patrick-fuller.com/wp-content/uploads/2013/03/btree.png)
+
+In this case, the size of the render area was doubled to better view the entire
+graph.
 
 ###Full Browser
 
@@ -39,9 +42,9 @@ server with:
 python -m SimpleHTTPServer
 ```
 
-Navigate a browser to http://localhost:8000/, and you're done. This site allows
-for loading graphs via a simple file drag-and-drop interface. The input takes
-json files, which are explained below.
+Navigate a browser to http://localhost:8000/index.html, and you're done. This
+site allows for loading graphs via a simple file drag-and-drop interface. The
+input takes json files, which are explained below.
 
 ###Graph File Format
 
@@ -86,20 +89,7 @@ the visualizer defaults to more boring colors.
 
 In IPython, you can generate and edit graphs before drawing. For example,
 
-```python
-import igraph
+![](http://www.patrick-fuller.com/wp-content/uploads/2013/03/colored_pinwheel.png)
 
-# Output is a Python object
-graph = igraph.generate([(1,2),(2,3),(3,4),(4,5),(5,2)])
-
-# You can edit directly in place
-graph["nodes"][1]["color"] = "0x00ff00"
-
-# Or save to a string / file and edit externally
-json = igraph.to_json(graph)
-```
-
-(For people who enjoy command-line tools, there are also argv hooks on
-`force_directed_layout.py`.)
-
-The `igraph.draw(...)` method will render all inputted "color" fields.
+For people who enjoy command-line tools, there are also argv hooks on
+`force_directed_layout.py`.
