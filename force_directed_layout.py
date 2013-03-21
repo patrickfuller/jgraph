@@ -12,12 +12,13 @@ def run(edges, iterations=1000, force_strength=5.0, dampening=0.01,
         max_velocity=2.0, max_distance=50, is_3d=True):
     """Runs a force-directed-layout algorithm on the input graph.
 
-    iterations - Number of FDL iterations to run in coordinate generation
-    force_strength - Strength of Coulomb and Hooke forces
-                     (edit this to scale the distance between nodes)
-    dampening - Multiplier to reduce force applied to nodes
-    max_velocity - Maximum distance a node can move in one step
-    max_distance - The maximum distance considered for interactions
+    Arguments:
+    iterations -- Number of FDL iterations to run in coordinate generation
+    force_strength -- Strength of Coulomb and Hooke forces
+                      (edit this to scale the distance between nodes)
+    dampening -- Multiplier to reduce force applied to nodes
+    max_velocity -- Maximum distance a node can move in one step
+    max_distance -- The maximum distance considered for interactions
     """
 
     # Get a list of node ids from the edge data
@@ -116,26 +117,19 @@ if __name__ == "__main__":
     except IOError:
         edges = json.loads(sys.argv[-1])
 
-    node_data = edges["nodes"]
-    edges = edges["edges"]
     # Convert to internal representation
-    #edges = [{"source": str(s), "target": str(t)} for s, t in edges]
+    edges = [{"source": str(s), "target": str(t)} for s, t in edges]
 
     # Handle additional args
-    kwargs = {"force_strength": 5.0, "is_3d": True}
+    kwargs = {"force_strength": 5.0, "is_3d": True, "iterations": 1000}
     for i, arg in enumerate(sys.argv):
         if arg == "--force-strength":
             kwargs["force_strength"] = float(sys.argv[i + 1])
         elif arg == "--2D":
             kwargs["is_3d"] = False
 
-    kwargs["force_strength"] = 10.0
-    kwargs["iterations"] = 10000
     # Generate nodes
     nodes = run(edges, **kwargs)
-
-    for key, value in nodes.items():
-        value["color"] = node_data[str(key)]["color"]
 
     # Convert to json and print
     print json_formatter.dumps({"edges": edges, "nodes": nodes})

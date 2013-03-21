@@ -1,52 +1,80 @@
-graph-vis
-=========
+igraph
+=======
 
-An interactive 3D network layout and visualization tool written with three.js.
+An interactive 3D network layout and visualization tool for the IPython notebook
+and [browsers](http://www.patrick-fuller.com/toon-graph-vis/).
 
 ![](http://www.patrick-fuller.com/wp-content/uploads/2013/02/toon-graph.png)
 
-A running version of this script can be found [here](http://www.patrick-fuller.com/graph-vis/)
-for standard Lambert shading and [here](http://www.patrick-fuller.com/toon-graph-vis/)
-for toon shading. These coincide with the two current branches, which I may
-merge at some point in the future.
-
-By default, it loads `miserables.json`, but you can drag and drop to load `pinwheel.json`,
-located [here](http://www.patrick-fuller.com/graph-vis/json/pinwheel.json). You  can
-also make your own graphs using the tools shown below.
-
 Usage
------
+=====
 
-This viewer takes input JSON graph data structures. As an example, consider:
+###IPython notebook
+
+Open a new notebook with `ipython notebook` and make sure that the `igraph`
+directory is either in the directory you started the notebook or your
+PYTHONPATH. You can test the setup by typing:
+
+```python
+import igraph
+igraph.draw([(1,2),(2,3),(3,4),(4,5),(5,2)])
+```
+
+into a notebook cell. You should get the output:
+
+![]()
+
+You can use this in conjunction with other code for educational purposes. For
+example, consider the generation of a binary tree:
+
+![]()
+
+###Full Browser
+
+A version of the browser can be found at http://www.patrick-fuller.com/toon-graph-vis/.
+To start your own local version, cd to the `igraph` directory and start a
+server with:
+
+```bash
+python -m SimpleHTTPServer
+```
+
+Navigate a browser to http://localhost:8000/, and you're done. This site allows
+for loading graphs via a simple file drag-and-drop interface. The input takes
+json files, which are explained below.
+
+###Graph File Format
+
+The viewers take input json graph data structures. As an example, consider:
 
 ```
 {
     "edges": [
         {
-            "source": 1, 
+            "source": 1,
             "target": 2
-        }, 
+        },
         {
-            "source": 2, 
+            "source": 2,
             "target": 3
-        }, 
+        },
         {
-            "source": 3, 
+            "source": 3,
             "target": 4
         }
-    ], 
+    ],
     "nodes": {
-        "1": {
+        1: {
             "location": [ 9.339, -17.667, -2.138 ]
-        }, 
-        "2": {
+        },
+        2: {
             "location": [ 8.877, -7.235, -10.665 ]
-        }, 
-        "3": {
+        },
+        3: {
             "location": [ 3.765, -0.434, -19.326 ],
             "color": "0xff0000"
-        }, 
-        "4": {
+        },
+        4: {
             "location": [ 0, 0, 0 ]
         }
     }
@@ -54,25 +82,24 @@ This viewer takes input JSON graph data structures. As an example, consider:
 ```
 
 Nodes and edges can be colored by specifying a `"color"` field. If not specified,
-the visualizer defaults to some grayscale colors.
+the visualizer defaults to more boring colors.
 
-To generate networks from adjacency lists, use the scripts in the `python/` directory.
+In IPython, you can generate and edit graphs before drawing. For example,
 
-```bash
-python force_directed_layout.py --force-strength 10 --2D "[[1,2],[2,3],[3,4]]"
+```python
+import igraph
+
+# Output is a Python object
+graph = igraph.generate([(1,2),(2,3),(3,4),(4,5),(5,2)])
+
+# You can edit directly in place
+graph["nodes"][1]["color"] = "0x00ff00"
+
+# Or save to a string / file and edit externally
+json = igraph.to_json(graph)
 ```
 
- * `--force-strength` determines the separation between nodes
- * `--2D` confines the network layout to two dimensions
+(For people who enjoy command-line tools, there are also argv hooks on
+`force_directed_layout.py`.)
 
-```bash
-python random_layout.py --edge-length 15 --separation 3 --density 60 --concentric --2D "[[1,2],[2,3],[3,4]]"
-```
-
- * `--edge-length` is the maximum length of a network edge
- * `--separation` is the minimum distance between any two nodes
- * `--density` attempts to compact the nodes spherically if non-zero
- * `--concentric` places the root node at the center of the network
- * `--2D` confines the network layout to two dimensions
-
-Save these outputs to files, optionally edit to add in colors, and drag the files into the viewer.
+The `igraph.draw(...)` method will render all inputted "color" fields.
