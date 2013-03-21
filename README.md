@@ -27,7 +27,7 @@ into a notebook cell. You should get the output:
 You can use this in conjunction with other code for educational purposes. For
 example, consider the generation of a binary tree:
 
-![](http://www.patrick-fuller.com/wp-content/uploads/2013/03/btree.png)
+![](http://www.patrick-fuller.com/wp-content/uploads/2013/03/btree_600.png)
 
 In this case, the size of the render area was doubled to better view the entire
 graph.
@@ -89,7 +89,7 @@ the visualizer defaults to more boring colors.
 
 In IPython, you can generate and edit graphs before drawing. For example,
 
-![](http://www.patrick-fuller.com/wp-content/uploads/2013/03/colored_pinwheel.png)
+![](http://www.patrick-fuller.com/wp-content/uploads/2013/03/colored_pinwheel_600.png)
 
 For people who enjoy command-line tools, there are also argv hooks on
 `force_directed_layout.py`.
