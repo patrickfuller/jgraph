@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """
 Generates network coordinates using a force-directed layout.
 """
@@ -12,13 +11,12 @@ def run(edges, iterations=1000, force_strength=5.0, dampening=0.01,
         max_velocity=2.0, max_distance=50, is_3d=True):
     """Runs a force-directed-layout algorithm on the input graph.
 
-    Arguments:
-    iterations -- Number of FDL iterations to run in coordinate generation
-    force_strength -- Strength of Coulomb and Hooke forces
-                      (edit this to scale the distance between nodes)
-    dampening -- Multiplier to reduce force applied to nodes
-    max_velocity -- Maximum distance a node can move in one step
-    max_distance -- The maximum distance considered for interactions
+    iterations - Number of FDL iterations to run in coordinate generation
+    force_strength - Strength of Coulomb and Hooke forces
+                     (edit this to scale the distance between nodes)
+    dampening - Multiplier to reduce force applied to nodes
+    max_velocity - Maximum distance a node can move in one step
+    max_distance - The maximum distance considered for interactions
     """
 
     # Get a list of node ids from the edge data
@@ -63,7 +61,6 @@ def run(edges, iterations=1000, force_strength=5.0, dampening=0.01,
 
 def _coulomb(n1, n2, k, r):
     """Calculates Coulomb forces and updates node data."""
-
     # Get relevant positional data
     delta = [x2 - x1 for x1, x2 in zip(n1["velocity"], n2["velocity"])]
     distance = sqrt(sum(d ** 2 for d in delta))
@@ -121,7 +118,7 @@ if __name__ == "__main__":
     edges = [{"source": str(s), "target": str(t)} for s, t in edges]
 
     # Handle additional args
-    kwargs = {"force_strength": 5.0, "is_3d": True, "iterations": 1000}
+    kwargs = {"force_strength": 5.0, "is_3d": True}
     for i, arg in enumerate(sys.argv):
         if arg == "--force-strength":
             kwargs["force_strength"] = float(sys.argv[i + 1])

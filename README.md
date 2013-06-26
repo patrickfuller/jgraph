@@ -6,6 +6,8 @@ and [browsers](http://www.patrick-fuller.com/toon-graph-vis/).
 
 ![](http://www.patrick-fuller.com/wp-content/uploads/2013/02/toon-graph.png)
 
+######For publication-quality renderings of 3D graphs, check out the [blender-graphs](https://github.com/patrickfuller/blender-graphs) project.
+
 Usage
 =====
 
@@ -53,33 +55,15 @@ The viewers take input json graph data structures. As an example, consider:
 ```
 {
     "edges": [
-        {
-            "source": 1,
-            "target": 2
-        },
-        {
-            "source": 2,
-            "target": 3
-        },
-        {
-            "source": 3,
-            "target": 4
-        }
+        { "source": "1", "target": "2" },
+        { "source": "2", "target": "3" },
+        { "source": "3", "target": "4" }
     ],
     "nodes": {
-        1: {
-            "location": [ 9.339, -17.667, -2.138 ]
-        },
-        2: {
-            "location": [ 8.877, -7.235, -10.665 ]
-        },
-        3: {
-            "location": [ 3.765, -0.434, -19.326 ],
-            "color": "0xff0000"
-        },
-        4: {
-            "location": [ 0, 0, 0 ]
-        }
+        "1": { "location": [ -3.290, -6.258, -8.930 ] },
+        "2": { "location": [ -1.115, -2.167, -3.103 ] },
+        "3": { "location": [ 1.188, 2.173, 3.096 ], "color": "0xff0000" },
+        "4": { "location": [ 3.348, 6.252, 8.937 ] }
     }
 }
 ```
