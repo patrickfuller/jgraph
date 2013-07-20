@@ -11,6 +11,9 @@ import json
 from json import encoder
 encoder.FLOAT_REPR = lambda o: format(o, '.3f')
 
+load = json.load
+loads = json.loads
+
 
 def compress(obj):
     """Outputs json without whitespace."""

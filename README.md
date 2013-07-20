@@ -1,17 +1,34 @@
 igraph
 ======
 
-An interactive 3D network layout and visualization tool for the IPython notebook
-and [browsers](http://www.patrick-fuller.com/toon-graph-vis/).
+An interactive 3D graph visualizer for modern browsers. Check out the demo
+[here](http://www.patrick-fuller.com/igraph/example/).
 
-![](http://www.patrick-fuller.com/wp-content/uploads/2013/02/toon-graph.png)
+For publication-quality renderings of 3D graphs, check out the [blender-graphs](https://github.com/patrickfuller/blender-graphs) project.
 
-######For publication-quality renderings of 3D graphs, check out the [blender-graphs](https://github.com/patrickfuller/blender-graphs) project.
+![](http://imgur.com/98C5eoJ.png)
 
 Usage
 =====
 
-###IPython notebook
+```
+igraph.create('my-selector');
+igraph.draw(myGraph);
+```
+
+where `'my-selector'` is where you want to place igraph, and `myGraph` is
+an object. See below for more on the object structure, or just check out the
+included example.
+
+The `igraph.create()` method takes a few optional parameters, specifying the
+sizes and colors of nodes. Read the source for more.
+
+IPython support
+===============
+
+The IPython notebook is an open-source tool poised to replace MATLAB in many
+applications. As a scientist (of sorts), I'm all about it. Therefore, I made
+handles to use igraph with the notebook.
 
 Open a new notebook with `ipython notebook` and make sure that the `igraph`
 directory is either in the directory you started the notebook or your
@@ -22,58 +39,35 @@ import igraph
 igraph.draw([(1, 2), (2, 3), (3, 4), (4, 1), (4, 5), (5, 2)])
 ```
 
-into a notebook cell. You should get the output:
+into a notebook cell. You should get a paddlewheel graph as an output.
 
-![](http://www.patrick-fuller.com/wp-content/uploads/2013/03/pinwheel_example.png)
+You can use this in conjunction with other code for educational purposes. Try
+generating a red-black tree!
 
-You can use this in conjunction with other code for educational purposes. For
-example, consider the generation of a binary tree:
+There are three commands and some optional parameters to check out. Read the
+docstrings for more.
 
-![](http://www.patrick-fuller.com/wp-content/uploads/2013/03/btree_600.png)
+Graph Data Format
+=================
 
-In this case, the size of the render area was doubled to better view the entire
-graph.
-
-###Full Browser
-
-A version of the browser can be found at http://www.patrick-fuller.com/toon-graph-vis/.
-To start your own local version, cd to the `igraph` directory and start a
-server with:
-
-```bash
-python -m SimpleHTTPServer
-```
-
-Navigate a browser to http://localhost:8000/index.html, and you're done. This
-site allows for loading graphs via a simple file drag-and-drop interface. The
-input takes json files, which are explained below.
-
-###Graph File Format
-
-The viewers take input json graph data structures. As an example, consider:
+The viewers take input graph data structures as javascript objects. As an
+example, consider:
 
 ```
 {
-    "edges": [
-        { "source": "1", "target": "2" },
-        { "source": "2", "target": "3" },
-        { "source": "3", "target": "4" }
-    ],
     "nodes": {
-        "1": { "location": [ -3.290, -6.258, -8.930 ] },
-        "2": { "location": [ -1.115, -2.167, -3.103 ] },
-        "3": { "location": [ 1.188, 2.173, 3.096 ], "color": "0xff0000" },
-        "4": { "location": [ 3.348, 6.252, 8.937 ] }
-    }
+        "jane": { "location": [ -3.290, -6.258, -8.930 ] },
+        "bob": { "location": [ -1.115, -2.167, -3.103 ], "color": "0x0000ff" },
+        "mike": { "location": [ 1.188, 2.173, 3.096 ], "color": "0xff0000" },
+        "sally": { "location": [ 3.348, 6.252, 8.937 ] }
+    },
+    "edges": [
+        { "source": "jane", "target": "bob" },
+        { "source": "bob", "target": "mike" },
+        { "source": "mike", "target": "sally" }
+    ]
 }
 ```
 
 Nodes and edges can be colored by specifying a `"color"` field. If not specified,
-the visualizer defaults to more boring colors.
-
-In IPython, you can generate and edit graphs before drawing. For example,
-
-![](http://www.patrick-fuller.com/wp-content/uploads/2013/03/colored_pinwheel_600.png)
-
-For people who enjoy command-line tools, there are also argv hooks on
-`force_directed_layout.py`.
+the visualizer defaults to grayscale (this behavior can be changed).
