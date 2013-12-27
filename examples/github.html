@@ -13,27 +13,26 @@
     <body>
         <div class="graph"></div>
         <div class="description">
-            <h1>les misérables co-occurrence</h1>
+            <h1>github followers</h1>
             <p>
-                The graph shown was inspired by this <a href="http://bl.ocks.org/mbostock/4062045">d3.js example</a>.
-                I like the simple solid-color aesthetic of d3 (you have to admit that Lambert + Phong shaders
-                look cheesy), and I wanted to replicate it in three dimensions. Here's my attempt.
+                This graph was generated through the Github API by traversing
+                the "following" lists of each user. Nodes are users, and are
+                sized by their number of followers. I used myself
+                (<a href="https://github.com/patrickfuller">patrickfuller</a>)
+                as the root node of this graph, and cut off traversal at 1,000
+                users using <a href="https://gist.github.com/patrickfuller/8143294">
+                this script</a>.
             </p>
-            <br />
-            <p>
-                I'm planning on adding more features to this project, such as
-                displaying directed graphs, functional node sizing, handles on
-                mouse hovering, clicking and dragging, and whatever else comes
-                to mind. Stay tuned for more!
-            </p>
-
         </div>
 
         <a href="https://github.com/patrickfuller/igraph"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-                
         <script type="text/javascript">
-            igraph.create('.graph');
-            $.getJSON('miserables.json', function (graph) {
+            igraph.create('.graph',
+                          {runOptimization: false,
+                           defaultNodeColor: "0x6a9fb5",
+                           edgeSize: 0.1,
+                           z: 75});
+            $.getJSON('github.json', function (graph) {
                 igraph.draw(graph);
             });
         </script>
