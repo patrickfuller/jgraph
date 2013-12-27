@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>igraph</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <script src="../lib/jquery-1.10.2.min.js"></script>
+        <script src="../lib/three.min.js"></script>
+        <script src="../lib/TrackballControls.js"></script>
+        <script src="../lib/ShaderToon.js"></script>
+        <script src="../igraph.js"></script>
+    </head>
+    <body>
+        <div class="graph"></div>
+        <div class="description">
+            <h1>github followers</h1>
+            <p>
+                This graph was generated through the Github API by traversing
+                the "following" lists of each user. Nodes are users, and are
+                sized by their number of followers. I used myself
+                (<a href="https://github.com/patrickfuller">patrickfuller</a>)
+                as the root node of this graph, and cut off traversal at 1,000
+                users.
+            </p>
+        </div>
+
+        <a href="https://github.com/patrickfuller/igraph"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+        <script type="text/javascript">
+            igraph.create('.graph',
+                          {runOptimization: false,
+                           defaultNodeColor: "0x6a9fb5",
+                           edgeSize: 0.1,
+                           z: 75});
+            $.getJSON('github.json', function (graph) {
+                igraph.draw(graph);
+            });
+        </script>
+    </body>
+</html>
