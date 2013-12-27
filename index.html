@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>igraph by patrickfuller</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>igraph</h1>
+        <p>An interactive 3D graph visualizer for modern browsers.</p>
+
+        <p class="view"><a href="https://github.com/patrickfuller/igraph">View the Project on GitHub <small>patrickfuller/igraph</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/patrickfuller/igraph/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/patrickfuller/igraph/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/patrickfuller/igraph">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="igraph" class="anchor" href="#igraph"><span class="octicon octicon-link"></span></a>igraph</h1>
+
+<p>An interactive 3D graph visualizer for modern browsers. Check out the demo
+<a href="http://www.patrick-fuller.com/igraph/examples/">here</a>.</p>
+
+<p>For publication-quality renderings of 3D graphs, check out the <a href="https://github.com/patrickfuller/blender-graphs">blender-graphs</a> project.</p>
+
+<p><img src="http://imgur.com/98C5eoJ.png" alt=""></p>
+
+<h1>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<pre><code>igraph.create('my-selector');
+igraph.draw(myGraph);
+</code></pre>
+
+<p>where <code>'my-selector'</code> is where you want to place igraph, and <code>myGraph</code> is
+an object. See below for more on the object structure, or just check out the
+included example. The <code>igraph.create()</code> method takes a few optional parameters, specifying the
+sizes and colors of nodes, as well as force-directed optimization. Read the source for more.</p>
+
+<h1>
+<a name="ipython-support" class="anchor" href="#ipython-support"><span class="octicon octicon-link"></span></a>IPython support</h1>
+
+<p>The IPython notebook is an open-source tool poised to replace MATLAB in many
+applications. As a scientist (of sorts), I'm all about it. Therefore, I made
+handles to use igraph with the notebook.</p>
+
+<p>Open a new notebook with <code>ipython notebook</code> and make sure that the <code>igraph</code>
+directory is either in the directory you started the notebook or your
+PYTHONPATH. You can test the setup by typing:</p>
+
+<div class="highlight highlight-python"><pre><span class="kn">import</span> <span class="nn">igraph</span>
+<span class="n">igraph</span><span class="o">.</span><span class="n">draw</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+</pre></div>
+
+<p>into a notebook cell. You should get a paddlewheel graph as an output. You can
+use this in conjunction with other code for educational purposes. Try
+generating a red-black tree! There are three commands and some optional
+parameters to check out. Read the docstrings for more.</p>
+
+<h1>
+<a name="graph-data-format" class="anchor" href="#graph-data-format"><span class="octicon octicon-link"></span></a>Graph Data Format</h1>
+
+<p>The viewers take input graph data structures as javascript objects. As an
+example, consider:</p>
+
+<pre><code>{
+    "nodes": {
+        "jane": { },
+        "bob": { "location": [ -1.115, -2.167, -3.103 ], "color": "0x0000ff" },
+        "mike": { "color": "0xff0000" },
+        "sally": { "location": [ 3.348, 6.252, 8.937 ] }
+    },
+    "edges": [
+        { "source": "jane", "target": "bob" },
+        { "source": "bob", "target": "mike" },
+        { "source": "mike", "target": "sally" }
+    ]
+}
+</code></pre>
+
+<p>Nodes and edges can be colored by specifying a <code>"color"</code> field. If not specified,
+the visualizer defaults to grayscale (this behavior can be changed).</p>
+
+<p>By default, the algorithm runs a force-directed layout on the graph. When enabled,
+the <code>"location"</code> field is optional. However, for larger graphs, you will want to
+disable this feature and pre-render the locations. Use the associated Python
+script to do so.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/patrickfuller">patrickfuller</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
