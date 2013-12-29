@@ -1,7 +1,7 @@
 igraph
 ======
 
-An interactive 3D graph visualizer for modern browsers.
+An embeddable webGL graph visualization library.
 http://patrickfuller.github.io/igraph/
 
 Examples
@@ -26,8 +26,8 @@ options = {
     nodeSize: 2.0, // Default node size
     edgeSize: 0.25, // Edge connection diameter
     arrowSize: 1.0, // If drawn, edge arrow size
-    defaultNodeColor: "0xaaaaaa", // Color for nodes without a "color" property
-    defaultEdgeColor: "0x777777", // Color for edges without a "color" property
+    defaultNodeColor: 0xaaaaaa, // Color for nodes without a "color" property
+    defaultEdgeColor: 0x777777, // Color for edges without a "color" property
     shader: THREE.ShaderToon.toon2, // three.js shader algorithm to use
     runOptimization: true // Runs a force-directed-layout algorithm on the graph
 };
@@ -58,7 +58,7 @@ Nodes require no information outside of their keys. However, there are useful op
 
 ```javascript
 {
-    color: "0xffffff", // Color for this node
+    color: 0xffffff, // Color for this node
     size: 1.0, // Scaling factor for this node's size
     location: [0.0, 0.0, 0.0] // Starting location of node. Useful for pre-rendering.
 }

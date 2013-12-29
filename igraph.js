@@ -5,8 +5,8 @@ var igraph = {
 
     // Creates a new instance of igraph
     create: function (selector, options) {
-        var $s, vPreRotation, matrix, self;
-        $s = $(selector);
+        var vPreRotation, matrix, self;
+        this.$s = $(selector);
         self = this;
         options = options || {};
 
@@ -22,10 +22,10 @@ var igraph = {
         this.runOptimization = options.hasOwnProperty("runOptimization") ? options.runOptimization : true;
 
         this.renderer = new THREE.WebGLRenderer({antialias: true});
-        this.renderer.setSize($s.width(), $s.height());
-        $s.append(this.renderer.domElement);
+        this.renderer.setSize(this.$s.width(), this.$s.height());
+        this.$s.append(this.renderer.domElement);
 
-        this.camera = new THREE.PerspectiveCamera(70, $s.width() / $s.height());
+        this.camera = new THREE.PerspectiveCamera(70, this.$s.width() / this.$s.height());
         this.camera.position.z = options.hasOwnProperty("z") ? options.z : 100;
 
         this.controls = new THREE.TrackballControls(this.camera, this.renderer.domElement);
@@ -56,8 +56,8 @@ var igraph = {
         this.scene.add(this.light);
 
         $(window).resize(function () {
-            self.renderer.setSize($s.width(), $s.height());
-            self.camera.aspect = $s.width() / $s.height();
+            self.renderer.setSize(self.$s.width(), self.$s.height());
+            self.camera.aspect = self.$s.width() / self.$s.height();
             self.camera.updateProjectionMatrix();
         });
 
@@ -81,6 +81,7 @@ var igraph = {
             material = self.materials[node.hasOwnProperty("color") ?
                     node.color : self.defaultNodeColor];
             mesh = new THREE.Mesh(self.sphereGeometry, material);
+            mesh.name = k;
             mesh.position.fromArray(node.hasOwnProperty("location") ?
                                     node.location : [0, 0, 0]);
             if (node.hasOwnProperty("size")) {
@@ -130,18 +131,75 @@ var igraph = {
         }
     },
 
+    // Fires a user-specified callback (function (node) {}) on node click
+    onNodeClick: function (callback) {
+        var self = this;
+        this.projector = new THREE.Projector();
+        this.$s.click(function (event) {
+            var vector, raycaster, intersects, i;
+            vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1,
+                -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
+            self.projector.unprojectVector(vector, self.camera);
+            raycaster = new THREE.Raycaster(self.camera.position,
+                vector.sub(self.camera.position).normalize());
+            intersects = raycaster.intersectObjects(self.nodes);
+            if (intersects.length !== 0) {
+                callback(intersects[0].object);
+            }
+        });
+    },
+
+    // Fires onEnter and onExit callbacks (function node() {}) on each node
+    onNodeHover: function (onEnter, onExit) {
+        var self = this;
+        this.projector = new THREE.Projector();
+        this.$s.mousemove(function (event) {
+            var vector, raycaster, intersects, i;
+            vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1,
+                -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
+            self.projector.unprojectVector(vector, self.camera);
+            raycaster = new THREE.Raycaster(self.camera.position,
+                vector.sub(self.camera.position).normalize());
+            intersects = raycaster.intersectObjects(self.nodes);
+            // Move from node to empty
+            if (intersects.length === 0) {
+                if (this.selected !== undefined) {
+                    onExit(this.selected);
+                    this.selected = undefined;
+                }
+                return;
+            }
+            // Move from empty to node
+            if (this.selected === undefined) {
+                this.selected = intersects[0].object;
+                onEnter(this.selected);
+            // Move between nodes
+            } else {
+                if (this.selected !== intersects[0].object) {
+                    onExit(this.selected);
+                    this.selected = intersects[0].object;
+                    onEnter(this.selected);
+                }
+            }
+        });
+    },
+
     // Deletes the existing graph
     clear: function () {
         var self = this;
-        $.each(this.nodes.concat(this.edges), function (i, value) {
+        $.each(this.nodes.concat(this.edges).concat(this.arrows), function (i, value) {
             self.scene.remove(value);
         });
         this.nodes = [];
         this.edges = [];
+        this.arrows = [];
     },
 
-    // Makes a toon-shaded material
+    // Makes a custom-shaded material
     makeMaterial: function (color) {
+        if (typeof color === "string" || color instanceof String) {
+            color = parseInt(color, 16);
+        }
         var material = new THREE.ShaderMaterial({
                 uniforms: THREE.UniformsUtils.clone(this.shader.uniforms),
                 vertexShader: this.shader.vertexShader,
@@ -149,7 +207,7 @@ var igraph = {
             });
         material.uniforms.uDirLightPos.value.set(this.camera.position.z,
                            this.camera.position.z, this.camera.position.z);
-        color = new THREE.Color(parseInt(color, 16));
+        color = new THREE.Color(color);
         material.uniforms.uDirLightColor.value = color;
         material.uniforms.uBaseColor.value = color;
         return material;

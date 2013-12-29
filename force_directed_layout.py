@@ -129,4 +129,4 @@ if __name__ == "__main__":
     nodes = run(edges, **kwargs)
 
     # Convert to json and print
-    print json_formatter.dumps({"edges": edges, "nodes": nodes})
+    print(json_formatter.dumps({"edges": edges, "nodes": nodes}))
