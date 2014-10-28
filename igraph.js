@@ -5,8 +5,9 @@ var igraph = {
 
     // Creates a new instance of igraph
     create: function (selector, options) {
-        var vPreRotation, matrix, self;
-        this.$s = $(selector);
+        var $s, matrix, self;
+        $s = $(selector);
+        this.$s = $s;
         self = this;
         options = options || {};
 
@@ -18,14 +19,14 @@ var igraph = {
                 options.defaultNodeColor : "0xaaaaaa";
         this.defaultEdgeColor = options.hasOwnProperty("defaultEdgeColor") ?
                 options.defaultEdgeColor : "0x777777";
-        this.shader = options.hasOwnProperty("shader") ? options.shader : THREE.ShaderToon.toon2;
         this.runOptimization = options.hasOwnProperty("runOptimization") ? options.runOptimization : true;
+        this.shader = options.hasOwnProperty("shader") ? options.shader : "toon";
 
-        this.renderer = new THREE.WebGLRenderer({antialias: true});
-        this.renderer.setSize(this.$s.width(), this.$s.height());
-        this.$s.append(this.renderer.domElement);
+        this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+        this.renderer.setSize($s.width(), $s.height());
+        $s.append(this.renderer.domElement);
 
-        this.camera = new THREE.PerspectiveCamera(70, this.$s.width() / this.$s.height());
+        this.camera = new THREE.PerspectiveCamera(70, $s.width() / $s.height());
         this.camera.position.z = options.hasOwnProperty("z") ? options.z : 100;
 
         this.controls = new THREE.TrackballControls(this.camera, this.renderer.domElement);
@@ -35,14 +36,13 @@ var igraph = {
         this.coneGeometry = new THREE.CylinderGeometry(this.edgeSize, this.arrowSize, 2 * this.arrowSize, 32, 3, false);
 
         // This orients the cylinder primitive so THREE.lookAt() works properly
-        vPreRotation = new THREE.Vector3(Math.PI / 2, Math.PI, 0);
-        matrix = new THREE.Matrix4().makeRotationFromEuler(vPreRotation);
+        matrix = new THREE.Matrix4().makeRotationFromEuler(new THREE.Euler(Math.PI / 2, Math.PI, 0));
         this.cylinderGeometry.applyMatrix(matrix);
         this.coneGeometry.applyMatrix(matrix);
 
-        this.light = new THREE.HemisphereLight(0xffffff, 1.0);
-        this.light.position = this.camera.position;
-        this.light.rotation = this.camera.rotation;
+        this.light = new THREE.HemisphereLight(0xffffff, 0.5);
+        this.directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        this.directionalLight.position.set(1, 1, 1);
 
         this.nodes = [];
         this.edges = [];
@@ -53,11 +53,12 @@ var igraph = {
 
         this.scene = new THREE.Scene();
         this.scene.add(this.camera);
-        this.scene.add(this.light);
+        this.camera.add(this.light);
+        this.camera.add(this.directionalLight);
 
         $(window).resize(function () {
-            self.renderer.setSize(self.$s.width(), self.$s.height());
-            self.camera.aspect = self.$s.width() / self.$s.height();
+            self.renderer.setSize($s.width(), $s.height());
+            self.camera.aspect = $s.width() / $s.height();
             self.camera.updateProjectionMatrix();
         });
 
@@ -69,6 +70,7 @@ var igraph = {
         var material, mesh, arrow, mag, self, map, n1, n2;
         self = this;
         map = {};
+        this.current = graph;
 
         // Draws nodes and saves references
         $.each(graph.nodes, function (k, node) {
@@ -119,7 +121,7 @@ var igraph = {
             // If directed, add on arrows
             if (self.directed) {
                 arrow = new THREE.Mesh(self.coneGeometry, material);
-                arrow.position = mesh.position;
+                arrow.position.copy(mesh.position);
                 arrow.lookAt(n2.position);
                 self.scene.add(arrow);
                 self.arrows.push(arrow);
@@ -129,6 +131,16 @@ var igraph = {
         if (this.runOptimization) {
             this.optimize();
         }
+    },
+
+    // Sets shader (toon, basic, phong, lambert) and redraws
+    setShader: function (shader) {
+        this.shader = shader;
+        this.clear();
+        this.materials = {};
+        this.materials[this.defaultNodeColor] = this.makeMaterial(this.defaultNodeColor);
+        this.materials[this.defaultEdgeColor] = this.makeMaterial(this.defaultEdgeColor);
+        this.draw(this.current);
     },
 
     // Fires a user-specified callback (function (node) {}) on node click
@@ -197,19 +209,35 @@ var igraph = {
 
     // Makes a custom-shaded material
     makeMaterial: function (color) {
+        var self = this, materialName, material, shader;
+
         if (typeof color === "string" || color instanceof String) {
             color = parseInt(color, 16);
         }
-        var material = new THREE.ShaderMaterial({
-                uniforms: THREE.UniformsUtils.clone(this.shader.uniforms),
-                vertexShader: this.shader.vertexShader,
-                fragmentShader: this.shader.fragmentShader
+
+        // If a different shader is specified, use uncustomized materials
+        if ($.inArray(self.shader, ["basic", "phong", "lambert"]) !== -1) {
+            materialName = "Mesh" + self.shader.charAt(0).toUpperCase() +
+                            self.shader.slice(1) + "Material";
+            material = new THREE[materialName]({color: color});
+
+        // If toon, use materials with some shader edits
+        } else if (this.shader === "toon") {
+            shader = THREE.ShaderToon.toon2;
+
+            material = new THREE.ShaderMaterial({
+                uniforms: THREE.UniformsUtils.clone(shader.uniforms),
+                vertexShader: shader.vertexShader,
+                fragmentShader: shader.fragmentShader
             });
-        material.uniforms.uDirLightPos.value.set(this.camera.position.z,
-                           this.camera.position.z, this.camera.position.z);
-        color = new THREE.Color(color);
-        material.uniforms.uDirLightColor.value = color;
-        material.uniforms.uBaseColor.value = color;
+            material.uniforms.uDirLightPos.value.set(1, 1, 1).multiplyScalar(15);
+            color = new THREE.Color(color);
+            material.uniforms.uDirLightColor.value = color;
+            material.uniforms.uBaseColor.value = color;
+        } else {
+            throw new Error(this.shader + " shader does not exist. Use " +
+                            "'toon', 'basic', 'phong', or 'lambert'.");
+        }
         return material;
     },
 
@@ -308,7 +336,7 @@ var igraph = {
 
                 if (self.directed) {
                     a = self.arrows[j];
-                    a.position = e.position;
+                    a.position.copy(e.position);
                     a.lookAt(n2.position);
                 }
             }

@@ -4,11 +4,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>igraph</title>
         <link href="css/style.css" rel="stylesheet" type="text/css" />
-        <script src="../lib/jquery-1.10.2.min.js"></script>
-        <script src="../lib/three.min.js"></script>
-        <script src="../lib/TrackballControls.js"></script>
-        <script src="../lib/ShaderToon.js"></script>
-        <script src="../igraph.js"></script>
+        <script src="../lib/jquery-1.11.1.min.js"></script>
+        <script src="../build/igraph.min.js"></script>
     </head>
     <body>
         <div class="graph"></div>
@@ -21,12 +18,10 @@
             </p>
             <br />
             <p>
-                I'm planning on adding more features to this project, such as
-                displaying directed graphs, functional node sizing, handles on
-                mouse hovering, clicking and dragging, and whatever else comes
-                to mind. Stay tuned for more!
+                If you don't like the <a id="toon">toon</a> shading, igraph
+                also supports <a id="basic">basic</a>, <a id="phong">phong</a>,
+                and <a id="lambert">lambert</a>.
             </p>
-
         </div>
 
         <a href="https://github.com/patrickfuller/igraph"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
@@ -35,6 +30,11 @@
             $.getJSON('miserables.json', function (graph) {
                 igraph.draw(graph);
             });
+
+            $('#toon').click(function () { igraph.setShader('toon'); });
+            $('#basic').click(function () { igraph.setShader('basic'); });
+            $('#phong').click(function () { igraph.setShader('phong'); });
+            $('#lambert').click(function () { igraph.setShader('lambert'); });
         </script>
     </body>
 </html>

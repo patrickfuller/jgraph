@@ -1,21 +1,19 @@
-from IPython.display import Javascript, display
+from IPython.display import HTML, display
 import os
-import json_formatter
-import force_directed_layout
+import uuid
+import igraph.json_formatter as json
+from igraph import force_directed_layout
 
-# Load required assets on import (IPython comes with jQuery)
-PATH = os.path.normpath(os.path.dirname(__file__))
-LIB = ["lib/three.min.js", "lib/TrackballControls.js",
-       "lib/ShaderToon.js", "igraph.js"]
+filename = "igraph.min.js"
+file_path = os.path.normpath(os.path.dirname(__file__))
+local_path = os.path.join("nbextensions", filename)
+remote_path = ("https://rawgit.com/patrickfuller/igraph/master/"
+               "build/igraph.min.js")
 
-# This is the only way I found to use local copies of js libraries in IPython
-lib_script = ""
-for filename in LIB:
-    with open(os.path.join(PATH, filename)) as in_js:
-        lib_script += in_js.read()
 
-def draw(data, size=(400, 225), node_size=2.0, edge_size=0.25,
-         default_node_color="0xaaaaaa", default_edge_color="0x777777", z=20):
+def draw(data, size=(400, 300), node_size=2.0, edge_size=0.25,
+         default_node_color="0xaaaaaa", default_edge_color="0x777777", z=20,
+         shader="toon"):
     """Draws an interactive 3D visualization of the inputted graph.
 
     Args:
@@ -28,17 +26,37 @@ def draw(data, size=(400, 225), node_size=2.0, edge_size=0.25,
         default_edge_color: (Optional) If loading data without specified
             "color" properties, this will be used. Default is "0x222222"
         z: (Optional) Starting z position of the camera. Default is 20
+        shader: (Optional) Specifies shading algorithm to use. Can be "toon",
+            "basic", "phong", or "lambert".
 
     Inputting an adjacency list into `data` results in a "default" graph type.
     For more customization, generate a json file using other methods before
     running the drawer.
     """
+    # Catch errors on string-based input before getting js involved
+    shader_options = ["toon", "basic", "phong", "lambert"]
+    if shader not in shader_options:
+        raise Exception("Invalid shader! Please use one of: "
+                        + ", ".join(shader_options))
+
+    # Try using IPython >=2.0 to install js locally
+    try:
+        from IPython.html.nbextensions import install_nbextension
+        install_nbextension([os.path.join(file_path,
+                             "build", filename)], verbose=0)
+    except:
+        pass
 
     # Guess the input format and handle accordingly
     if isinstance(data, list):
-        graph = json_formatter.dumps(generate(data))
+        graph = json.dumps(generate(data))
     elif isinstance(data, dict):
-        graph = json_formatter.dumps(data)
+        # Convert color hex to string for json handling
+        for node_key in data["nodes"]:
+            node = data["nodes"][node_key]
+            if "color" in node and isinstance(node["color"], int):
+                node["color"] = hex(node["color"])
+        graph = json.dumps(data)
     else:
         # Support both files and strings
         try:
@@ -47,19 +65,38 @@ def draw(data, size=(400, 225), node_size=2.0, edge_size=0.25,
         except:
             graph = data
 
-    # This calls igraph and uses some IPython magic to get everything linked
-    script = ("var $d = $('<div/>').attr('id', 'graph_' + utils.uuid());"
-              "$d.width(%d); $d.height(%d);"
-              "igraph.create($d, {nodeSize: %f, edgeSize: %f,"
-              "               defaultNodeColor: '%s',"
-              "               defaultEdgeColor: '%s'});"
-              "igraph.draw(%s);"
-              "container.show();"
-              "element.append($d);" % (size[0], size[1], node_size, edge_size,
-              default_node_color, default_edge_color, graph))
+            node["color"] = hex(node["color"])
+
+    div_id = uuid.uuid4()
+    html = """<div id="graph_%s"></div>
+           <script type="text/javascript">
+           require.config({baseUrl: "/",
+                             paths: {igraph: ['%s', '%s']}});
+           require(['igraph'], function () {
+               var $d = $('#graph_%s');
+               $d.width(%d); $d.height(%d);
+               $d.igraph = jQuery.extend({}, igraph);
+               $d.igraph.create($d, {nodeSize: %f, edgeSize: %f,
+                                     defaultNodeColor: '%s',
+                                     defaultEdgeColor: '%s',
+                                     shader: '%s'});
+               $d.igraph.draw(%s);
+
+               $d.resizable({
+                   aspectRatio: %d / %d,
+                   resize: function (evt, ui) {
+                       $d.igraph.renderer.setSize(ui.size.width,
+                                                  ui.size.height);
+                   }
+               });
+           });
+           </script>""" % (div_id, local_path[:-3], remote_path[:-3],
+                           div_id, size[0], size[1], node_size, edge_size,
+                           default_node_color, default_edge_color, shader,
+                           graph, size[0], size[1])
 
     # Execute js and display the results in a div (see script for more)
-    display(Javascript(data=lib_script + script))
+    display(HTML(html))
 
 
 def generate(data, iterations=1000, force_strength=5.0, dampening=0.01,
@@ -97,4 +134,4 @@ def to_json(data):
     Floats are rounded to three decimals and positional vectors are printed on
     one line with some whitespace buffer.
     """
-    return json_formatter.dumps(data)
+    return json.dumps(data)
