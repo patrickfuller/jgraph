@@ -34,6 +34,7 @@
 <ul>
 <li><a href="http://patrickfuller.github.io/igraph/examples/miserables.html">les misérables</a></li>
 <li><a href="http://patrickfuller.github.io/igraph/examples/github.html">github connections</a></li>
+<li><a href="http://patrickfuller.github.io/igraph/examples/ipython.html">IPython notebook</a></li>
 </ul><h1>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
 
@@ -50,7 +51,7 @@
     <span class="nx">arrowSize</span><span class="o">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="c1">// If drawn, edge arrow size</span>
     <span class="nx">defaultNodeColor</span><span class="o">:</span> <span class="mf">0xaaaaaa</span><span class="p">,</span> <span class="c1">// Color for nodes without a "color" property</span>
     <span class="nx">defaultEdgeColor</span><span class="o">:</span> <span class="mf">0x777777</span><span class="p">,</span> <span class="c1">// Color for edges without a "color" property</span>
-    <span class="nx">shader</span><span class="o">:</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">ShaderToon</span><span class="p">.</span><span class="nx">toon2</span><span class="p">,</span> <span class="c1">// three.js shader algorithm to use</span>
+    <span class="nx">shader</span><span class="o">:</span> <span class="s2">"toon"</span><span class="p">,</span> <span class="c1">// three.js shader to use, can be "toon", "basic", "phong", or "lambert"</span>
     <span class="nx">runOptimization</span><span class="o">:</span> <span class="kc">true</span> <span class="c1">// Runs a force-directed-layout algorithm on the graph</span>
 <span class="p">};</span>
 </pre></div>
