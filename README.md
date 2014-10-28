@@ -9,6 +9,7 @@ Examples
 
  * [les misérables](http://patrickfuller.github.io/igraph/examples/miserables.html)
  * [github connections](http://patrickfuller.github.io/igraph/examples/github.html)
+ * [IPython notebook](http://patrickfuller.github.io/igraph/examples/ipython.html)
 
 Usage
 =====
@@ -28,7 +29,7 @@ options = {
     arrowSize: 1.0, // If drawn, edge arrow size
     defaultNodeColor: 0xaaaaaa, // Color for nodes without a "color" property
     defaultEdgeColor: 0x777777, // Color for edges without a "color" property
-    shader: THREE.ShaderToon.toon2, // three.js shader algorithm to use
+    shader: "toon", // three.js shader to use, can be "toon", "basic", "phong", or "lambert"
     runOptimization: true // Runs a force-directed-layout algorithm on the graph
 };
 ```
