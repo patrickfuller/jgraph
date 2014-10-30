@@ -9,7 +9,7 @@ html, body {
 }
 
 body {
-    background: #fff;
+    background: #eee;
     width: 100%;
 
     font-family: 'Lato', Helvetica, sans-serif;
@@ -50,12 +50,12 @@ a {
     z-index: 100;
     top: 30px;
     left: 30px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(238, 238, 238, 0.8);
     padding: 10px;
 }
 
 .label {
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(238, 238, 238, 0.8);
     padding: 10px;
 }
