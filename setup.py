@@ -7,7 +7,7 @@ for scheme in INSTALL_SCHEMES.values():
 
 setup(
     name="igraph",
-    version="0.1.1",
+    version="0.1.2",
     description="View graph data structures in the IPython notebook.",
     url="http://github.com/patrickfuller/igraph/",
     license="MIT",

@@ -1708,18 +1708,18 @@ In&nbsp;[1]:
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="graph_516cb377-0a3f-4faf-a59b-99ee58ad3a69"></div>
+<div id="graph_acd119bb-0970-4b13-bfa6-7dbfa93495d8"></div>
            <script type="text/javascript">
            require.config({baseUrl: "/",
-                             paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/build/igraph.min']}});
+                             paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/js/build/igraph.min']}});
            require(['igraph'], function () {
-               var $d = $('#graph_516cb377-0a3f-4faf-a59b-99ee58ad3a69');
+               var $d = $('#graph_acd119bb-0970-4b13-bfa6-7dbfa93495d8');
                $d.width(400); $d.height(300);
                $d.igraph = jQuery.extend({}, igraph);
                $d.igraph.create($d, {nodeSize: 2.000000, edgeSize: 0.250000,
                                      defaultNodeColor: '0xaaaaaa',
                                      defaultEdgeColor: '0x777777',
-                                     shader: 'toon'});
+                                     shader: 'toon', z: '20'});
                $d.igraph.draw({
     "edges": [
         { "source": 1, "target": 2 },
@@ -1730,11 +1730,11 @@ In&nbsp;[1]:
         { "source": 5, "target": 2 }
     ],
     "nodes": {
-        "1": { "location": [ -5.592, -2.744, -1.258 ] },
-        "2": { "location": [ 0.315, 0.941, -3.495 ] },
-        "3": { "location": [ 5.326, -3.424, -0.442 ] },
-        "4": { "location": [ -0.331, -1.020, 3.521 ] },
-        "5": { "location": [ 0.244, 6.050, 1.738 ] }
+        "1": { "location": [ -2.000, -2.000, -2.000 ] },
+        "2": { "location": [ -1.175, -1.232, -0.810 ] },
+        "3": { "location": [ 0.173, -0.381, 0.114 ] },
+        "4": { "location": [ 1.431, 1.417, 1.407 ] },
+        "5": { "location": [ 2.000, 2.000, 1.872 ] }
     }
 });
 
@@ -1760,7 +1760,7 @@ In&nbsp;[1]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>That works, but the graph is boring. More complex graph visualizations use node size and color to show multiple dimensions. To do this with igraph, you can use a more expressive Python data structure. Each node takes three optional parameters: <code>color</code>, <code>size</code>, and <code>location</code>.</p>
+<p>That works, but the graph is boring. More complex graph visualizations use node size and color to show multiple dimensions. To do this with igraph, you can use a more expressive Python data structure. Each node takes three optional parameters: color, size, and location.</p>
 </div>
 </div>
 </div>
@@ -1800,18 +1800,18 @@ In&nbsp;[2]:
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="graph_7ce6d785-a76b-4e8b-ae0d-335a268e8bd1"></div>
+<div id="graph_a4ce683f-794c-4e33-8d9b-8318c915b9d5"></div>
            <script type="text/javascript">
            require.config({baseUrl: "/",
-                             paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/build/igraph.min']}});
+                             paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/js/build/igraph.min']}});
            require(['igraph'], function () {
-               var $d = $('#graph_7ce6d785-a76b-4e8b-ae0d-335a268e8bd1');
+               var $d = $('#graph_a4ce683f-794c-4e33-8d9b-8318c915b9d5');
                $d.width(400); $d.height(300);
                $d.igraph = jQuery.extend({}, igraph);
                $d.igraph.create($d, {nodeSize: 2.000000, edgeSize: 0.250000,
                                      defaultNodeColor: '0xaaaaaa',
                                      defaultEdgeColor: '0x777777',
-                                     shader: 'toon'});
+                                     shader: 'toon', z: '20'});
                $d.igraph.draw({
     "edges": [
         { "source": "jane", "target": "bob" },
@@ -1870,8 +1870,7 @@ In&nbsp;[3]:
         <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
             <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">b_tree</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">leaf</span><span class="p">,</span> <span class="n">index</span><span class="p">))</span>
-
-<span class="n">igraph</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">b_tree</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span> <span class="n">shader</span><span class="o">=</span><span class="s">&quot;lambert&quot;</span><span class="p">,</span> <span class="n">default_node_color</span><span class="o">=</span><span class="mh">0xaaaaff</span><span class="p">)</span>
+<span class="n">igraph</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">b_tree</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span> <span class="n">shader</span><span class="o">=</span><span class="s">&quot;lambert&quot;</span><span class="p">,</span> <span class="n">default_node_color</span><span class="o">=</span><span class="mh">0xaaaaff</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1885,18 +1884,18 @@ In&nbsp;[3]:
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="graph_8336fb38-a288-4acb-98b9-fa083aecb7f6"></div>
+<div id="graph_36f73152-5aad-4300-93bd-2c84e02058f5"></div>
            <script type="text/javascript">
            require.config({baseUrl: "/",
-                             paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/build/igraph.min']}});
+                             paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/js/build/igraph.min']}});
            require(['igraph'], function () {
-               var $d = $('#graph_8336fb38-a288-4acb-98b9-fa083aecb7f6');
+               var $d = $('#graph_36f73152-5aad-4300-93bd-2c84e02058f5');
                $d.width(800); $d.height(600);
                $d.igraph = jQuery.extend({}, igraph);
                $d.igraph.create($d, {nodeSize: 2.000000, edgeSize: 0.250000,
                                      defaultNodeColor: '11184895',
                                      defaultEdgeColor: '0x777777',
-                                     shader: 'lambert'});
+                                     shader: 'lambert', z: '200'});
                $d.igraph.draw({
     "edges": [
         { "source": 1, "target": 2 },
@@ -2027,133 +2026,133 @@ In&nbsp;[3]:
         { "source": 63, "target": 127 }
     ],
     "nodes": {
-        "1": { "location": [ 0.703, -0.264, -0.970 ] },
-        "2": { "location": [ -6.900, -13.935, -8.625 ] },
-        "3": { "location": [ 7.741, 13.653, 7.615 ] },
-        "4": { "location": [ -24.978, -15.972, -11.762 ] },
-        "5": { "location": [ 5.487, -25.632, -11.985 ] },
-        "6": { "location": [ 12.748, 17.394, -3.523 ] },
-        "7": { "location": [ 10.080, 24.515, 22.588 ] },
-        "8": { "location": [ -30.114, -25.259, -23.237 ] },
-        "9": { "location": [ -40.197, -10.388, -4.717 ] },
-        "10": { "location": [ 11.943, -28.459, -26.900 ] },
-        "11": { "location": [ 12.528, -35.497, -0.247 ] },
-        "12": { "location": [ -1.620, 20.394, -4.547 ] },
-        "13": { "location": [ 28.069, 17.383, -9.643 ] },
-        "14": { "location": [ 9.046, 41.111, 22.231 ] },
-        "15": { "location": [ 12.951, 20.781, 39.469 ] },
-        "16": { "location": [ -34.411, -20.313, -36.737 ] },
-        "17": { "location": [ -31.870, -40.115, -21.579 ] },
-        "18": { "location": [ -52.114, -16.566, -1.653 ] },
-        "19": { "location": [ -48.404, 1.265, 1.099 ] },
-        "20": { "location": [ 14.466, -20.796, -39.329 ] },
-        "21": { "location": [ 17.062, -40.841, -31.704 ] },
-        "22": { "location": [ 8.414, -35.581, 11.365 ] },
-        "23": { "location": [ 22.948, -45.940, 5.078 ] },
-        "24": { "location": [ -9.304, 27.999, -14.925 ] },
-        "25": { "location": [ -8.220, 14.713, 7.044 ] },
-        "26": { "location": [ 40.055, 10.223, -4.903 ] },
-        "27": { "location": [ 33.363, 25.127, -20.871 ] },
-        "28": { "location": [ 21.218, 48.831, 21.493 ] },
-        "29": { "location": [ -3.352, 51.036, 22.690 ] },
-        "30": { "location": [ 22.186, 10.854, 45.914 ] },
-        "31": { "location": [ 6.466, 26.390, 52.382 ] },
-        "32": { "location": [ -42.904, -17.409, -44.788 ] },
-        "33": { "location": [ -31.262, -16.872, -47.099 ] },
-        "34": { "location": [ -33.872, -49.201, -14.157 ] },
-        "35": { "location": [ -32.511, -50.782, -26.587 ] },
-        "36": { "location": [ -62.532, -15.448, -7.891 ] },
-        "37": { "location": [ -55.313, -24.005, 7.585 ] },
-        "38": { "location": [ -52.654, 5.857, 11.910 ] },
-        "39": { "location": [ -54.703, 11.444, -2.061 ] },
-        "40": { "location": [ 21.521, -19.224, -48.643 ] },
-        "41": { "location": [ 10.280, -12.991, -47.143 ] },
-        "42": { "location": [ 13.530, -52.245, -33.423 ] },
-        "43": { "location": [ 27.865, -44.504, -35.132 ] },
-        "44": { "location": [ 4.687, -37.825, 22.683 ] },
-        "45": { "location": [ 8.475, -27.421, 10.245 ] },
-        "46": { "location": [ 34.573, -51.046, 4.851 ] },
-        "47": { "location": [ 24.261, -55.108, 12.797 ] },
-        "48": { "location": [ -18.756, 33.760, -18.343 ] },
-        "49": { "location": [ -10.367, 32.925, -25.105 ] },
-        "50": { "location": [ -16.041, 10.843, 16.838 ] },
-        "51": { "location": [ -5.913, 9.632, 14.894 ] },
-        "52": { "location": [ 46.788, 0.510, -5.715 ] },
-        "53": { "location": [ 49.721, 10.892, 1.774 ] },
-        "54": { "location": [ 39.139, 34.658, -24.023 ] },
-        "55": { "location": [ 34.836, 26.210, -32.586 ] },
-        "56": { "location": [ 31.960, 50.563, 25.904 ] },
-        "57": { "location": [ 25.570, 57.730, 16.232 ] },
-        "58": { "location": [ -15.280, 53.777, 26.252 ] },
-        "59": { "location": [ -7.888, 61.165, 19.117 ] },
-        "60": { "location": [ 32.569, 5.572, 45.917 ] },
-        "61": { "location": [ 23.690, 3.135, 54.663 ] },
-        "62": { "location": [ 4.176, 36.030, 59.037 ] },
-        "63": { "location": [ -0.224, 24.373, 62.299 ] },
-        "64": { "location": [ -49.506, -19.499, -50.784 ] },
-        "65": { "location": [ -47.320, -11.340, -49.823 ] },
-        "66": { "location": [ -29.291, -19.244, -55.278 ] },
-        "67": { "location": [ -29.786, -10.484, -52.949 ] },
-        "68": { "location": [ -39.442, -54.838, -10.563 ] },
-        "69": { "location": [ -32.266, -55.987, -8.401 ] },
-        "70": { "location": [ -33.168, -56.339, -33.295 ] },
-        "71": { "location": [ -32.511, -59.536, -26.136 ] },
-        "72": { "location": [ -67.038, -12.149, -14.901 ] },
-        "73": { "location": [ -71.514, -16.553, -9.986 ] },
-        "74": { "location": [ -61.218, -28.043, 13.286 ] },
-        "75": { "location": [ -53.331, -29.602, 14.282 ] },
-        "76": { "location": [ -54.586, 12.485, 18.135 ] },
-        "77": { "location": [ -56.160, 5.314, 20.405 ] },
-        "78": { "location": [ -60.186, 18.621, -0.211 ] },
-        "79": { "location": [ -57.825, 17.706, -7.646 ] },
-        "80": { "location": [ 22.987, -17.322, -57.330 ] },
-        "81": { "location": [ 29.358, -19.130, -52.934 ] },
-        "82": { "location": [ 7.143, -5.588, -50.054 ] },
-        "83": { "location": [ 8.203, -9.999, -55.507 ] },
-        "84": { "location": [ 14.397, -61.155, -35.015 ] },
-        "85": { "location": [ 7.677, -58.639, -33.637 ] },
-        "86": { "location": [ 33.576, -49.274, -40.360 ] },
-        "87": { "location": [ 36.797, -44.523, -34.433 ] },
-        "88": { "location": [ 6.021, -37.833, 31.588 ] },
-        "89": { "location": [ -1.307, -40.042, 28.928 ] },
-        "90": { "location": [ 1.704, -24.596, 9.212 ] },
-        "91": { "location": [ 14.053, -22.287, 8.796 ] },
-        "92": { "location": [ 43.568, -51.804, 6.642 ] },
-        "93": { "location": [ 40.595, -57.755, 2.866 ] },
-        "94": { "location": [ 21.805, -63.338, 15.588 ] },
-        "95": { "location": [ 28.676, -58.998, 19.458 ] },
-        "96": { "location": [ -26.718, 37.798, -17.762 ] },
-        "97": { "location": [ -23.838, 38.221, -23.593 ] },
-        "98": { "location": [ -13.027, 32.178, -33.473 ] },
-        "99": { "location": [ -10.015, 40.209, -29.961 ] },
-        "100": { "location": [ -19.003, 5.395, 24.144 ] },
-        "101": { "location": [ -22.580, 10.557, 23.572 ] },
-        "102": { "location": [ -4.280, 10.478, 22.749 ] },
-        "103": { "location": [ -5.322, 2.218, 18.140 ] },
-        "104": { "location": [ 51.516, -5.656, -9.962 ] },
-        "105": { "location": [ 51.996, -5.688, -2.417 ] },
-        "106": { "location": [ 57.972, 13.747, 3.682 ] },
-        "107": { "location": [ 54.647, 8.656, 8.728 ] },
-        "108": { "location": [ 38.799, 43.008, -26.287 ] },
-        "109": { "location": [ 46.509, 39.051, -26.128 ] },
-        "110": { "location": [ 32.556, 28.910, -40.706 ] },
-        "111": { "location": [ 39.484, 25.907, -40.111 ] },
-        "112": { "location": [ 40.600, 50.748, 25.420 ] },
-        "113": { "location": [ 37.678, 53.297, 31.994 ] },
-        "114": { "location": [ 25.102, 63.850, 10.231 ] },
-        "115": { "location": [ 32.028, 63.416, 15.049 ] },
-        "116": { "location": [ -23.369, 53.250, 30.541 ] },
-        "117": { "location": [ -23.476, 57.322, 25.726 ] },
-        "118": { "location": [ -14.418, 66.593, 16.485 ] },
-        "119": { "location": [ -7.213, 69.395, 16.973 ] },
-        "120": { "location": [ 41.094, 5.796, 47.225 ] },
-        "121": { "location": [ 37.435, -1.537, 45.234 ] },
-        "122": { "location": [ 22.220, -4.567, 59.014 ] },
-        "123": { "location": [ 27.487, 0.922, 62.411 ] },
-        "124": { "location": [ -1.698, 41.523, 62.526 ] },
-        "125": { "location": [ 6.250, 43.110, 64.352 ] },
-        "126": { "location": [ -7.913, 21.917, 66.363 ] },
-        "127": { "location": [ -1.669, 24.682, 70.906 ] }
+        "1": { "location": [ -2.000, -2.000, -2.000 ] },
+        "2": { "location": [ -2.000, -2.000, -2.000 ] },
+        "3": { "location": [ -2.000, -2.000, -2.000 ] },
+        "4": { "location": [ -2.000, -2.000, -2.000 ] },
+        "5": { "location": [ -2.000, -2.000, -2.000 ] },
+        "6": { "location": [ -2.000, -2.000, -2.000 ] },
+        "7": { "location": [ -2.000, -2.000, -2.000 ] },
+        "8": { "location": [ -2.000, -2.000, -2.000 ] },
+        "9": { "location": [ -2.000, -2.000, -2.000 ] },
+        "10": { "location": [ -2.000, -2.000, -2.000 ] },
+        "11": { "location": [ -2.000, -2.000, -2.000 ] },
+        "12": { "location": [ -2.000, -2.000, -2.000 ] },
+        "13": { "location": [ -2.000, -2.000, -2.000 ] },
+        "14": { "location": [ -2.000, -2.000, -2.000 ] },
+        "15": { "location": [ -2.000, -2.000, -2.000 ] },
+        "16": { "location": [ -2.000, -2.000, -2.000 ] },
+        "17": { "location": [ -2.000, -2.000, -2.000 ] },
+        "18": { "location": [ -2.000, -2.000, -2.000 ] },
+        "19": { "location": [ -2.000, -2.000, -2.000 ] },
+        "20": { "location": [ -2.000, -2.000, -2.000 ] },
+        "21": { "location": [ -2.000, -2.000, -2.000 ] },
+        "22": { "location": [ -2.000, -2.000, -2.000 ] },
+        "23": { "location": [ -2.000, -2.000, -2.000 ] },
+        "24": { "location": [ -2.000, -2.000, -2.000 ] },
+        "25": { "location": [ -2.000, -2.000, -2.000 ] },
+        "26": { "location": [ -2.000, -2.000, -2.000 ] },
+        "27": { "location": [ -2.000, -2.000, -2.000 ] },
+        "28": { "location": [ -2.000, -2.000, -2.000 ] },
+        "29": { "location": [ -2.000, -2.000, -2.000 ] },
+        "30": { "location": [ -2.000, -2.000, -2.000 ] },
+        "31": { "location": [ -2.000, -2.000, -2.000 ] },
+        "32": { "location": [ -2.000, -2.000, -2.000 ] },
+        "33": { "location": [ -2.000, -2.000, -2.000 ] },
+        "34": { "location": [ -2.000, -2.000, -2.000 ] },
+        "35": { "location": [ -2.000, -2.000, -2.000 ] },
+        "36": { "location": [ -2.000, -2.000, -2.000 ] },
+        "37": { "location": [ -2.000, -2.000, -2.000 ] },
+        "38": { "location": [ -2.000, -2.000, -2.000 ] },
+        "39": { "location": [ -2.000, -2.000, -2.000 ] },
+        "40": { "location": [ -2.000, -2.000, -2.000 ] },
+        "41": { "location": [ -2.000, -2.000, -2.000 ] },
+        "42": { "location": [ -2.000, -2.000, -2.000 ] },
+        "43": { "location": [ -2.000, -2.000, -2.000 ] },
+        "44": { "location": [ -2.000, -2.000, -2.000 ] },
+        "45": { "location": [ -2.000, -2.000, -2.000 ] },
+        "46": { "location": [ -2.000, -2.000, -2.000 ] },
+        "47": { "location": [ -2.000, -2.000, -2.000 ] },
+        "48": { "location": [ -2.000, -2.000, -2.000 ] },
+        "49": { "location": [ -2.000, -2.000, -2.000 ] },
+        "50": { "location": [ -2.000, -2.000, -2.000 ] },
+        "51": { "location": [ -2.000, -2.000, -2.000 ] },
+        "52": { "location": [ -2.000, -2.000, -2.000 ] },
+        "53": { "location": [ -2.000, -2.000, -2.000 ] },
+        "54": { "location": [ -2.000, -2.000, -2.000 ] },
+        "55": { "location": [ -2.000, -2.000, -2.000 ] },
+        "56": { "location": [ -2.000, -2.000, -2.000 ] },
+        "57": { "location": [ -2.000, -2.000, -2.000 ] },
+        "58": { "location": [ -2.000, -2.000, -2.000 ] },
+        "59": { "location": [ -2.000, -2.000, -2.000 ] },
+        "60": { "location": [ -2.000, -2.000, -2.000 ] },
+        "61": { "location": [ -2.000, -2.000, -2.000 ] },
+        "62": { "location": [ -1.597, -2.000, -1.722 ] },
+        "63": { "location": [ -2.000, -1.844, -0.796 ] },
+        "64": { "location": [ 2.000, 1.074, -1.283 ] },
+        "65": { "location": [ 2.000, -0.223, -0.445 ] },
+        "66": { "location": [ 1.907, 1.300, 1.337 ] },
+        "67": { "location": [ 2.000, 2.000, 2.000 ] },
+        "68": { "location": [ 2.000, 2.000, 2.000 ] },
+        "69": { "location": [ 2.000, 2.000, 2.000 ] },
+        "70": { "location": [ 2.000, 2.000, 2.000 ] },
+        "71": { "location": [ 2.000, 2.000, 2.000 ] },
+        "72": { "location": [ 2.000, 2.000, 2.000 ] },
+        "73": { "location": [ 2.000, 2.000, 2.000 ] },
+        "74": { "location": [ 2.000, 2.000, 2.000 ] },
+        "75": { "location": [ 2.000, 2.000, 2.000 ] },
+        "76": { "location": [ 2.000, 2.000, 2.000 ] },
+        "77": { "location": [ 2.000, 2.000, 2.000 ] },
+        "78": { "location": [ 2.000, 2.000, 2.000 ] },
+        "79": { "location": [ 2.000, 2.000, 2.000 ] },
+        "80": { "location": [ 2.000, 2.000, 2.000 ] },
+        "81": { "location": [ 2.000, 2.000, 2.000 ] },
+        "82": { "location": [ 2.000, 2.000, 2.000 ] },
+        "83": { "location": [ 2.000, 2.000, 2.000 ] },
+        "84": { "location": [ 2.000, 2.000, 2.000 ] },
+        "85": { "location": [ 2.000, 2.000, 2.000 ] },
+        "86": { "location": [ 2.000, 2.000, 2.000 ] },
+        "87": { "location": [ 2.000, 2.000, 2.000 ] },
+        "88": { "location": [ 2.000, 2.000, 2.000 ] },
+        "89": { "location": [ 2.000, 2.000, 2.000 ] },
+        "90": { "location": [ 2.000, 2.000, 2.000 ] },
+        "91": { "location": [ 2.000, 2.000, 2.000 ] },
+        "92": { "location": [ 2.000, 2.000, 2.000 ] },
+        "93": { "location": [ 2.000, 2.000, 2.000 ] },
+        "94": { "location": [ 2.000, 2.000, 2.000 ] },
+        "95": { "location": [ 2.000, 2.000, 2.000 ] },
+        "96": { "location": [ 2.000, 2.000, 2.000 ] },
+        "97": { "location": [ 2.000, 2.000, 2.000 ] },
+        "98": { "location": [ 2.000, 2.000, 2.000 ] },
+        "99": { "location": [ 2.000, 2.000, 2.000 ] },
+        "100": { "location": [ 2.000, 2.000, 2.000 ] },
+        "101": { "location": [ 2.000, 2.000, 2.000 ] },
+        "102": { "location": [ 2.000, 2.000, 2.000 ] },
+        "103": { "location": [ 2.000, 2.000, 2.000 ] },
+        "104": { "location": [ 2.000, 2.000, 2.000 ] },
+        "105": { "location": [ 2.000, 2.000, 2.000 ] },
+        "106": { "location": [ 2.000, 2.000, 2.000 ] },
+        "107": { "location": [ 2.000, 2.000, 2.000 ] },
+        "108": { "location": [ 2.000, 2.000, 2.000 ] },
+        "109": { "location": [ 2.000, 2.000, 2.000 ] },
+        "110": { "location": [ 2.000, 2.000, 2.000 ] },
+        "111": { "location": [ 2.000, 2.000, 2.000 ] },
+        "112": { "location": [ 2.000, 2.000, 2.000 ] },
+        "113": { "location": [ 2.000, 2.000, 2.000 ] },
+        "114": { "location": [ 2.000, 2.000, 2.000 ] },
+        "115": { "location": [ 2.000, 2.000, 2.000 ] },
+        "116": { "location": [ 2.000, 2.000, 2.000 ] },
+        "117": { "location": [ 2.000, 2.000, 2.000 ] },
+        "118": { "location": [ 2.000, 2.000, 2.000 ] },
+        "119": { "location": [ 2.000, 2.000, 2.000 ] },
+        "120": { "location": [ 2.000, 2.000, 2.000 ] },
+        "121": { "location": [ 2.000, 2.000, 2.000 ] },
+        "122": { "location": [ 2.000, 2.000, 2.000 ] },
+        "123": { "location": [ 2.000, 2.000, 2.000 ] },
+        "124": { "location": [ 2.000, 2.000, 2.000 ] },
+        "125": { "location": [ 2.000, 2.000, 2.000 ] },
+        "126": { "location": [ 2.000, 2.000, 2.000 ] },
+        "127": { "location": [ 2.000, 2.000, 2.000 ] }
     }
 });
 
@@ -2204,7 +2203,7 @@ In&nbsp;[4]:
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-Help on function draw in module igraph:
+Help on function draw in module igraph.notebook:
 
 draw(data, size=(400, 300), node_size=2.0, edge_size=0.25, default_node_color=&apos;0xaaaaaa&apos;, default_edge_color=&apos;0x777777&apos;, z=20, shader=&apos;toon&apos;)
     Draws an interactive 3D visualization of the inputted graph.
@@ -2231,6 +2230,79 @@ draw(data, size=(400, 300), node_size=2.0, edge_size=0.25, default_node_color=&a
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You may also want more control over generating the force-directed graph from an adjacency list. For that use <code>igraph.generate</code>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[5]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">help</span><span class="p">(</span><span class="n">igraph</span><span class="o">.</span><span class="n">generate</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Help on function generate in module igraph.notebook:
+
+generate(data, iterations=1000, force_strength=5.0, dampening=0.01, max_velocity=2.0, max_distance=50, is_3d=True)
+    Runs a force-directed algorithm on a graph, returning a data structure.
+    
+    Args:
+        data: An adjacency list of tuples (ie. [(1,2),...])
+        iterations: (Optional) Number of FDL iterations to run in coordinate
+            generation
+        force_strength: (Optional) Strength of Coulomb and Hooke forces
+            (edit this to scale the distance between nodes)
+        dampening: (Optional) Multiplier to reduce force applied to nodes
+        max_velocity: (Optional) Maximum distance a node can move in one step
+        max_distance: (Optional) The maximum inter-node distance considered
+        is_3d: (Optional) Generates three-dimensional coordinates
+    
+    Outputs a json-serializable Python object. To visualize, pass the output to
+    &#96;igraph.draw(...)&#96;.
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre> 
+</pre></div>
+
+</div>
 </div>
 </div>
 

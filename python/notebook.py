@@ -48,7 +48,7 @@ def draw(data, size=(400, 300), node_size=2.0, edge_size=0.25,
 
     # Guess the input format and handle accordingly
     if isinstance(data, list):
-        graph = json_formatter.dumps(generate(data))
+        graph = json_formatter.dumps(generate(data, iterations=1))
     elif isinstance(data, dict):
         # Convert color hex to string for json handling
         for node_key in data["nodes"]:
