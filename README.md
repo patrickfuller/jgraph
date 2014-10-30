@@ -55,7 +55,8 @@ The viewers take input graph data structures as javascript objects. Here's the m
 }
 ```
 
-Nodes require no information outside of their keys. However, there are useful optional parameters that can be specified.
+Nodes require no information outside of their keys. However, there are useful
+optional parameters that can be specified.
 
 ```javascript
 {
@@ -65,20 +66,30 @@ Nodes require no information outside of their keys. However, there are useful op
 }
 ```
 
-By default, the algorithm runs a force-directed layout on the graph. When enabled, the "location" field is optional. However, for larger graphs, you will want to disable this feature and pre-render the locations. Use the associated Python script to do so.
+By default, the algorithm runs a force-directed layout on the graph. When
+enabled, the "location" field is optional. However, for larger graphs, you will
+want to disable this feature and pre-render the locations. Use the associated
+Python library (`igraph.generate`) to do so.
 
-IPython support
-===============
+IPython
+=======
 
 The IPython notebook is an open-source tool poised to replace MATLAB in many
 applications. As a scientist of sorts, I'm all about it. Therefore, I made
-handles to use igraph with the notebook.
+handles to use igraph with the notebook. Install through pip:
 
-Open a new notebook and make sure that the igraph directory is either in the directory you started the notebook or your PYTHONPATH. You can test the setup by typing:
+```
+pip install igraph
+```
+
+Open a new notebook and test the setup by typing:
 
 ```python
 import igraph
 igraph.draw([(1, 2), (2, 3), (3, 4), (4, 1), (4, 5), (5, 2)])
 ```
 
-into a notebook cell. You should get a paddlewheel graph as an output. You can use this in conjunction with other code for educational purposes (try generating a red-black tree!). There are three commands and some optional parameters to check out. Read the docstrings for more.
+into a notebook cell. You should get a paddlewheel graph as an output. You can
+use this in conjunction with other code for educational purposes (try generating
+a red-black tree!). There are three commands and some optional parameters to
+check out. Read the docstrings and check out the example for more.

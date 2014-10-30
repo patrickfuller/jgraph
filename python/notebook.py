@@ -1,14 +1,13 @@
 from IPython.display import HTML, display
 import os
 import uuid
-import igraph.json_formatter as json
-from igraph import force_directed_layout
+from igraph import force_directed_layout, json_formatter
 
 filename = "igraph.min.js"
 file_path = os.path.normpath(os.path.dirname(__file__))
 local_path = os.path.join("nbextensions", filename)
 remote_path = ("https://rawgit.com/patrickfuller/igraph/master/"
-               "build/igraph.min.js")
+               "js/build/igraph.min.js")
 
 
 def draw(data, size=(400, 300), node_size=2.0, edge_size=0.25,
@@ -49,14 +48,14 @@ def draw(data, size=(400, 300), node_size=2.0, edge_size=0.25,
 
     # Guess the input format and handle accordingly
     if isinstance(data, list):
-        graph = json.dumps(generate(data))
+        graph = json_formatter.dumps(generate(data))
     elif isinstance(data, dict):
         # Convert color hex to string for json handling
         for node_key in data["nodes"]:
             node = data["nodes"][node_key]
             if "color" in node and isinstance(node["color"], int):
                 node["color"] = hex(node["color"])
-        graph = json.dumps(data)
+        graph = json_formatter.dumps(data)
     else:
         # Support both files and strings
         try:
@@ -79,7 +78,7 @@ def draw(data, size=(400, 300), node_size=2.0, edge_size=0.25,
                $d.igraph.create($d, {nodeSize: %f, edgeSize: %f,
                                      defaultNodeColor: '%s',
                                      defaultEdgeColor: '%s',
-                                     shader: '%s'});
+                                     shader: '%s', z: '%s'});
                $d.igraph.draw(%s);
 
                $d.resizable({
@@ -93,7 +92,7 @@ def draw(data, size=(400, 300), node_size=2.0, edge_size=0.25,
            </script>""" % (div_id, local_path[:-3], remote_path[:-3],
                            div_id, size[0], size[1], node_size, edge_size,
                            default_node_color, default_edge_color, shader,
-                           graph, size[0], size[1])
+                           z, graph, size[0], size[1])
 
     # Execute js and display the results in a div (see script for more)
     display(HTML(html))
@@ -134,4 +133,4 @@ def to_json(data):
     Floats are rounded to three decimals and positional vectors are printed on
     one line with some whitespace buffer.
     """
-    return json.dumps(data)
+    return json_formatter.dumps(data)
