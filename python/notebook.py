@@ -1,7 +1,7 @@
 from IPython.display import HTML, display
 import os
 import uuid
-from igraph import force_directed_layout, json_formatter
+from . import force_directed_layout, json_formatter
 
 filename = "igraph.min.js"
 file_path = os.path.normpath(os.path.dirname(__file__))
