@@ -42,7 +42,7 @@ def draw(data, size=(400, 300), node_size=2.0, edge_size=0.25,
     try:
         from IPython.html.nbextensions import install_nbextension
         install_nbextension([os.path.join(file_path,
-                             "build", filename)], verbose=0)
+                             "js/build", filename)], verbose=0)
     except:
         pass
 

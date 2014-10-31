@@ -1,21 +1,19 @@
 from setuptools import setup
-from distutils.command.install import INSTALL_SCHEMES
-
-# Ensures that data files (e.g. javascript) get installed in igraph folder
-for scheme in INSTALL_SCHEMES.values():
-    scheme["data"] = scheme["purelib"]
+from python import __version__
 
 setup(
     name="igraph",
-    version="0.1.2",
+    version=__version__,
     description="View graph data structures in the IPython notebook.",
     url="http://github.com/patrickfuller/igraph/",
     license="MIT",
     author="Patrick Fuller",
     author_email="patrickfuller@gmail.com",
-    package_dir={"igraph": "python"},
-    data_files=[("igraph", ["js/build/igraph.min.js"])],
-    packages=["igraph"],
+    package_dir={"igraph": "python",
+                 "igraph.js": "js"},
+    package_data={"igraph.js": ["js/build/igraph.min.js"]},
+    include_package_data=True,
+    packages=["igraph", "igraph.js"],
     install_requires=["ipython"],
     classifiers=[
         "Development Status :: 4 - Beta",
