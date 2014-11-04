@@ -30,6 +30,7 @@ var igraph = {
         this.camera.position.z = options.hasOwnProperty("z") ? options.z : 100;
 
         this.controls = new THREE.TrackballControls(this.camera, this.renderer.domElement);
+        this.controls.rotateSpeed = 0.5;
 
         this.sphereGeometry = new THREE.SphereGeometry(this.nodeSize, 16, 12);
         this.cylinderGeometry = new THREE.CylinderGeometry(this.edgeSize, this.edgeSize, 1, 32, 3, false);
