@@ -16,11 +16,11 @@ var igraph = {
         this.edgeSize = options.hasOwnProperty("edgeSize") ? options.edgeSize : 0.25;
         this.arrowSize = options.hasOwnProperty("arrowSize") ? options.arrowSize : this.edgeSize * 4;
         this.defaultNodeColor = options.hasOwnProperty("defaultNodeColor") ?
-                options.defaultNodeColor : "0xaaaaaa";
+                options.defaultNodeColor : "0x5bc0de";
         this.defaultEdgeColor = options.hasOwnProperty("defaultEdgeColor") ?
-                options.defaultEdgeColor : "0x777777";
+                options.defaultEdgeColor : "0xaaaaaa";
         this.runOptimization = options.hasOwnProperty("runOptimization") ? options.runOptimization : true;
-        this.shader = options.hasOwnProperty("shader") ? options.shader : "toon";
+        this.shader = options.hasOwnProperty("shader") ? options.shader : "basic";
 
         this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
         this.renderer.setSize($s.width(), $s.height());
@@ -267,7 +267,8 @@ var igraph = {
         delta = new THREE.Vector3();
 
         for (i = 0; i < self.nodes.length; i += 1) {
-            self.nodes[i].force = new THREE.Vector3();
+            self.nodes[i].location = new THREE.Vector3(Math.random(), Math.random(), Math.random());
+            self.nodes[i].force = new THREE.Vector3(Math.random(), Math.random(), Math.random());
         }
 
         iterate = function () {
@@ -331,14 +332,16 @@ var igraph = {
                 e = self.edges[j];
                 n1 = self.nodes[e.source];
                 n2 = self.nodes[e.target];
-                e.position.addVectors(n1.position, n2.position).divideScalar(2.0);
-                e.lookAt(n2.position);
-                e.scale.z = n2.position.distanceTo(n1.position);
-
-                if (self.directed) {
-                    a = self.arrows[j];
-                    a.position.copy(e.position);
-                    a.lookAt(n2.position);
+                mag = n2.position.distanceTo(n1.position);
+                if (mag > 0.1) {
+                    e.position.addVectors(n1.position, n2.position).divideScalar(2.0);
+                    e.lookAt(n2.position);
+                    e.scale.z = mag;
+                    if (self.directed) {
+                        a = self.arrows[j];
+                        a.position.copy(e.position);
+                        a.lookAt(n2.position);
+                    }
                 }
             }
         };

@@ -203,18 +203,18 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="graph_b641a574-5147-46ed-9231-58dcc0e70a4b"></div>
+<div id="graph_eb816cd5-0ea2-48a3-91f6-c864759907ce"></div>
            <script type="text/javascript">
            require.config({baseUrl: "/",
                              paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/js/build/igraph.min']}});
            require(['igraph'], function () {
-               var $d = $('#graph_b641a574-5147-46ed-9231-58dcc0e70a4b');
-               $d.width(400); $d.height(300);
+               var $d = $('#graph_eb816cd5-0ea2-48a3-91f6-c864759907ce');
+               $d.width(600); $d.height(400);
                $d.igraph = jQuery.extend({}, igraph);
                $d.igraph.create($d, {nodeSize: 2.000000, edgeSize: 0.250000,
-                                     defaultNodeColor: '0xaaaaaa',
-                                     defaultEdgeColor: '0x777777',
-                                     shader: 'toon', z: '20'});
+                                     defaultNodeColor: '0x5bc0de',
+                                     defaultEdgeColor: '0xaaaaaa',
+                                     shader: 'basic', z: '100'});
                $d.igraph.draw({
     "edges": [
         { "source": 1, "target": 2 },
@@ -225,16 +225,16 @@ div#notebook {
         { "source": 5, "target": 2 }
     ],
     "nodes": {
-        "1": { "location": [ -1.956, -2.000, -2.000 ] },
-        "2": { "location": [ -1.327, -1.359, -1.115 ] },
-        "3": { "location": [ -0.014, 0.038, 0.432 ] },
-        "4": { "location": [ 0.948, 1.097, 0.649 ] },
-        "5": { "location": [ 2.000, 2.000, 2.000 ] }
+        "1": { "location": [ -2.000, -2.000, -2.000 ] },
+        "2": { "location": [ -1.075, -0.850, -0.960 ] },
+        "3": { "location": [ -0.015, -0.042, 0.075 ] },
+        "4": { "location": [ 1.184, 1.065, 0.474 ] },
+        "5": { "location": [ 1.967, 1.984, 2.000 ] }
     }
 });
 
                $d.resizable({
-                   aspectRatio: 400 / 300,
+                   aspectRatio: 600 / 400,
                    resize: function (evt, ui) {
                        $d.igraph.renderer.setSize(ui.size.width,
                                                   ui.size.height);
@@ -267,16 +267,25 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">graph</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">&quot;nodes&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;jane&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;size&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
-        <span class="s">&quot;bob&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;color&quot;</span><span class="p">:</span> <span class="mh">0xffaaaa</span><span class="p">,</span> <span class="s">&quot;size&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span>
-        <span class="s">&quot;mike&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;color&quot;</span><span class="p">:</span> <span class="mh">0x2222ff</span><span class="p">,</span> <span class="s">&quot;size&quot;</span><span class="p">:</span> <span class="mf">1.25</span><span class="p">},</span>
-        <span class="s">&quot;sally&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;color&quot;</span><span class="p">:</span> <span class="mh">0x22ff22</span><span class="p">}</span>
+        <span class="s">&quot;ross&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;color&quot;</span><span class="p">:</span> <span class="mh">0xffaaaa</span><span class="p">,</span> <span class="s">&quot;size&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span>
+        <span class="s">&quot;joey&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;size&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+        <span class="s">&quot;chandler&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;color&quot;</span><span class="p">:</span> <span class="mh">0x2222ff</span><span class="p">,</span> <span class="s">&quot;size&quot;</span><span class="p">:</span> <span class="mf">1.25</span><span class="p">},</span>
+        <span class="s">&quot;phoebe&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;color&quot;</span><span class="p">:</span> <span class="mh">0x22ff22</span><span class="p">},</span>
+        <span class="s">&quot;rachel&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s">&quot;monica&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s">&quot;jack&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s">&quot;judy&quot;</span><span class="p">:</span> <span class="p">{},</span>
     <span class="p">},</span>
     <span class="s">&quot;edges&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;jane&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;bob&quot;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;bob&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;mike&quot;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;bob&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;sally&quot;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;mike&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;sally&quot;</span><span class="p">}</span>
+        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;chandler&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;ross&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;monica&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;ross&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;ross&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;rachel&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;ross&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;joey&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;ross&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;phoebe&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;ross&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;judy&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;monica&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;rachel&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;rachel&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;jack&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;chandler&quot;</span><span class="p">,</span> <span class="s">&quot;target&quot;</span><span class="p">:</span> <span class="s">&quot;chandler&quot;</span><span class="p">}</span>
     <span class="p">]</span>
 <span class="p">}</span>
 
@@ -294,35 +303,44 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="graph_478d16ad-a258-4685-95c9-abffe124d19e"></div>
+<div id="graph_a39c7b22-537a-45ea-b9d5-45b33e77d215"></div>
            <script type="text/javascript">
            require.config({baseUrl: "/",
                              paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/js/build/igraph.min']}});
            require(['igraph'], function () {
-               var $d = $('#graph_478d16ad-a258-4685-95c9-abffe124d19e');
-               $d.width(400); $d.height(300);
+               var $d = $('#graph_a39c7b22-537a-45ea-b9d5-45b33e77d215');
+               $d.width(600); $d.height(400);
                $d.igraph = jQuery.extend({}, igraph);
                $d.igraph.create($d, {nodeSize: 2.000000, edgeSize: 0.250000,
-                                     defaultNodeColor: '0xaaaaaa',
-                                     defaultEdgeColor: '0x777777',
-                                     shader: 'toon', z: '20'});
+                                     defaultNodeColor: '0x5bc0de',
+                                     defaultEdgeColor: '0xaaaaaa',
+                                     shader: 'basic', z: '100'});
                $d.igraph.draw({
     "edges": [
-        { "source": "jane", "target": "bob" },
-        { "source": "bob", "target": "mike" },
-        { "source": "bob", "target": "sally" },
-        { "source": "mike", "target": "sally" }
+        { "source": "chandler", "target": "ross" },
+        { "source": "monica", "target": "ross" },
+        { "source": "ross", "target": "rachel" },
+        { "source": "ross", "target": "joey" },
+        { "source": "ross", "target": "phoebe" },
+        { "source": "ross", "target": "judy" },
+        { "source": "monica", "target": "rachel" },
+        { "source": "rachel", "target": "jack" },
+        { "source": "chandler", "target": "chandler" }
     ],
     "nodes": {
-        "bob": { "color": "0xffaaaa", "size": 2.000 },
-        "jane": { "size": 0.500 },
-        "mike": { "color": "0x2222ff", "size": 1.250 },
-        "sally": { "color": "0x22ff22" }
+        "chandler": { "color": "0x2222ff", "size": 1.250 },
+        "jack": {},
+        "joey": { "size": 0.500 },
+        "judy": {},
+        "monica": {},
+        "phoebe": { "color": "0x22ff22" },
+        "rachel": {},
+        "ross": { "color": "0xffaaaa", "size": 2.000 }
     }
 });
 
                $d.resizable({
-                   aspectRatio: 400 / 300,
+                   aspectRatio: 600 / 400,
                    resize: function (evt, ui) {
                        $d.igraph.renderer.setSize(ui.size.width,
                                                   ui.size.height);
@@ -343,27 +361,17 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Because the input is a pure Python data structure, you can programmatically create and edit graphs without learning a new API. This is highly beneficial in education, as it allows students to mess around with algorithms without learning library-specific code.</p>
+<p>The <code>draw</code> method can take python objects, strings, or files.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">number_of_steps</span> <span class="o">=</span> <span class="mi">6</span>
-
-<span class="n">b_tree</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
-<span class="n">index</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_steps</span><span class="p">):</span>
-    <span class="n">leaves</span> <span class="o">=</span> <span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">b_tree</span> <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">other_edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">other_edge</span> <span class="ow">in</span> <span class="n">b_tree</span><span class="p">)]</span>
-    <span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="n">leaves</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
-            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">b_tree</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">leaf</span><span class="p">,</span> <span class="n">index</span><span class="p">))</span>
-<span class="n">igraph</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">b_tree</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span> <span class="n">shader</span><span class="o">=</span><span class="s">&quot;lambert&quot;</span><span class="p">,</span> <span class="n">default_node_color</span><span class="o">=</span><span class="mh">0xaaaaff</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">igraph</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s">&quot;miserables.json&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -377,17 +385,423 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 
 <div class="output_html rendered_html output_subarea ">
-<div id="graph_ed799fd6-2abc-48b1-baaf-869a5f0edc4f"></div>
+<div id="graph_17b16a6f-6d69-4822-a360-38766e105cdb"></div>
            <script type="text/javascript">
            require.config({baseUrl: "/",
                              paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/js/build/igraph.min']}});
            require(['igraph'], function () {
-               var $d = $('#graph_ed799fd6-2abc-48b1-baaf-869a5f0edc4f');
+               var $d = $('#graph_17b16a6f-6d69-4822-a360-38766e105cdb');
+               $d.width(600); $d.height(400);
+               $d.igraph = jQuery.extend({}, igraph);
+               $d.igraph.create($d, {nodeSize: 2.000000, edgeSize: 0.250000,
+                                     defaultNodeColor: '0x5bc0de',
+                                     defaultEdgeColor: '0xaaaaaa',
+                                     shader: 'basic', z: '100'});
+               $d.igraph.draw({
+    "edges": [
+        { "source": 1, "target": 0 },
+        { "source": 2, "target": 0 },
+        { "source": 3, "target": 0 },
+        { "source": 3, "target": 2 },
+        { "source": 4, "target": 0 },
+        { "source": 5, "target": 0 },
+        { "source": 6, "target": 0 },
+        { "source": 7, "target": 0 },
+        { "source": 8, "target": 0 },
+        { "source": 9, "target": 0 },
+        { "source": 11, "target": 10 },
+        { "source": 11, "target": 3 },
+        { "source": 11, "target": 2 },
+        { "source": 11, "target": 0 },
+        { "source": 12, "target": 11 },
+        { "source": 13, "target": 11 },
+        { "source": 14, "target": 11 },
+        { "source": 15, "target": 11 },
+        { "source": 17, "target": 16 },
+        { "source": 18, "target": 16 },
+        { "source": 18, "target": 17 },
+        { "source": 19, "target": 16 },
+        { "source": 19, "target": 17 },
+        { "source": 19, "target": 18 },
+        { "source": 20, "target": 16 },
+        { "source": 20, "target": 17 },
+        { "source": 20, "target": 18 },
+        { "source": 20, "target": 19 },
+        { "source": 21, "target": 16 },
+        { "source": 21, "target": 17 },
+        { "source": 21, "target": 18 },
+        { "source": 21, "target": 19 },
+        { "source": 21, "target": 20 },
+        { "source": 22, "target": 16 },
+        { "source": 22, "target": 17 },
+        { "source": 22, "target": 18 },
+        { "source": 22, "target": 19 },
+        { "source": 22, "target": 20 },
+        { "source": 22, "target": 21 },
+        { "source": 23, "target": 16 },
+        { "source": 23, "target": 17 },
+        { "source": 23, "target": 18 },
+        { "source": 23, "target": 19 },
+        { "source": 23, "target": 20 },
+        { "source": 23, "target": 21 },
+        { "source": 23, "target": 22 },
+        { "source": 23, "target": 12 },
+        { "source": 23, "target": 11 },
+        { "source": 24, "target": 23 },
+        { "source": 24, "target": 11 },
+        { "source": 25, "target": 24 },
+        { "source": 25, "target": 23 },
+        { "source": 25, "target": 11 },
+        { "source": 26, "target": 24 },
+        { "source": 26, "target": 11 },
+        { "source": 26, "target": 16 },
+        { "source": 26, "target": 25 },
+        { "source": 27, "target": 11 },
+        { "source": 27, "target": 23 },
+        { "source": 27, "target": 25 },
+        { "source": 27, "target": 24 },
+        { "source": 27, "target": 26 },
+        { "source": 28, "target": 11 },
+        { "source": 28, "target": 27 },
+        { "source": 29, "target": 23 },
+        { "source": 29, "target": 27 },
+        { "source": 29, "target": 11 },
+        { "source": 30, "target": 23 },
+        { "source": 31, "target": 30 },
+        { "source": 31, "target": 11 },
+        { "source": 31, "target": 23 },
+        { "source": 31, "target": 27 },
+        { "source": 32, "target": 11 },
+        { "source": 33, "target": 11 },
+        { "source": 33, "target": 27 },
+        { "source": 34, "target": 11 },
+        { "source": 34, "target": 29 },
+        { "source": 35, "target": 11 },
+        { "source": 35, "target": 34 },
+        { "source": 35, "target": 29 },
+        { "source": 36, "target": 34 },
+        { "source": 36, "target": 35 },
+        { "source": 36, "target": 11 },
+        { "source": 36, "target": 29 },
+        { "source": 37, "target": 34 },
+        { "source": 37, "target": 35 },
+        { "source": 37, "target": 36 },
+        { "source": 37, "target": 11 },
+        { "source": 37, "target": 29 },
+        { "source": 38, "target": 34 },
+        { "source": 38, "target": 35 },
+        { "source": 38, "target": 36 },
+        { "source": 38, "target": 37 },
+        { "source": 38, "target": 11 },
+        { "source": 38, "target": 29 },
+        { "source": 39, "target": 25 },
+        { "source": 40, "target": 25 },
+        { "source": 41, "target": 24 },
+        { "source": 41, "target": 25 },
+        { "source": 42, "target": 41 },
+        { "source": 42, "target": 25 },
+        { "source": 42, "target": 24 },
+        { "source": 43, "target": 11 },
+        { "source": 43, "target": 26 },
+        { "source": 43, "target": 27 },
+        { "source": 44, "target": 28 },
+        { "source": 44, "target": 11 },
+        { "source": 45, "target": 28 },
+        { "source": 47, "target": 46 },
+        { "source": 48, "target": 47 },
+        { "source": 48, "target": 25 },
+        { "source": 48, "target": 27 },
+        { "source": 48, "target": 11 },
+        { "source": 49, "target": 26 },
+        { "source": 49, "target": 11 },
+        { "source": 50, "target": 49 },
+        { "source": 50, "target": 24 },
+        { "source": 51, "target": 49 },
+        { "source": 51, "target": 26 },
+        { "source": 51, "target": 11 },
+        { "source": 52, "target": 51 },
+        { "source": 52, "target": 39 },
+        { "source": 53, "target": 51 },
+        { "source": 54, "target": 51 },
+        { "source": 54, "target": 49 },
+        { "source": 54, "target": 26 },
+        { "source": 55, "target": 51 },
+        { "source": 55, "target": 49 },
+        { "source": 55, "target": 39 },
+        { "source": 55, "target": 54 },
+        { "source": 55, "target": 26 },
+        { "source": 55, "target": 11 },
+        { "source": 55, "target": 16 },
+        { "source": 55, "target": 25 },
+        { "source": 55, "target": 41 },
+        { "source": 55, "target": 48 },
+        { "source": 56, "target": 49 },
+        { "source": 56, "target": 55 },
+        { "source": 57, "target": 55 },
+        { "source": 57, "target": 41 },
+        { "source": 57, "target": 48 },
+        { "source": 58, "target": 55 },
+        { "source": 58, "target": 48 },
+        { "source": 58, "target": 27 },
+        { "source": 58, "target": 57 },
+        { "source": 58, "target": 11 },
+        { "source": 59, "target": 58 },
+        { "source": 59, "target": 55 },
+        { "source": 59, "target": 48 },
+        { "source": 59, "target": 57 },
+        { "source": 60, "target": 48 },
+        { "source": 60, "target": 58 },
+        { "source": 60, "target": 59 },
+        { "source": 61, "target": 48 },
+        { "source": 61, "target": 58 },
+        { "source": 61, "target": 60 },
+        { "source": 61, "target": 59 },
+        { "source": 61, "target": 57 },
+        { "source": 61, "target": 55 },
+        { "source": 62, "target": 55 },
+        { "source": 62, "target": 58 },
+        { "source": 62, "target": 59 },
+        { "source": 62, "target": 48 },
+        { "source": 62, "target": 57 },
+        { "source": 62, "target": 41 },
+        { "source": 62, "target": 61 },
+        { "source": 62, "target": 60 },
+        { "source": 63, "target": 59 },
+        { "source": 63, "target": 48 },
+        { "source": 63, "target": 62 },
+        { "source": 63, "target": 57 },
+        { "source": 63, "target": 58 },
+        { "source": 63, "target": 61 },
+        { "source": 63, "target": 60 },
+        { "source": 63, "target": 55 },
+        { "source": 64, "target": 55 },
+        { "source": 64, "target": 62 },
+        { "source": 64, "target": 48 },
+        { "source": 64, "target": 63 },
+        { "source": 64, "target": 58 },
+        { "source": 64, "target": 61 },
+        { "source": 64, "target": 60 },
+        { "source": 64, "target": 59 },
+        { "source": 64, "target": 57 },
+        { "source": 64, "target": 11 },
+        { "source": 65, "target": 63 },
+        { "source": 65, "target": 64 },
+        { "source": 65, "target": 48 },
+        { "source": 65, "target": 62 },
+        { "source": 65, "target": 58 },
+        { "source": 65, "target": 61 },
+        { "source": 65, "target": 60 },
+        { "source": 65, "target": 59 },
+        { "source": 65, "target": 57 },
+        { "source": 65, "target": 55 },
+        { "source": 66, "target": 64 },
+        { "source": 66, "target": 58 },
+        { "source": 66, "target": 59 },
+        { "source": 66, "target": 62 },
+        { "source": 66, "target": 65 },
+        { "source": 66, "target": 48 },
+        { "source": 66, "target": 63 },
+        { "source": 66, "target": 61 },
+        { "source": 66, "target": 60 },
+        { "source": 67, "target": 57 },
+        { "source": 68, "target": 25 },
+        { "source": 68, "target": 11 },
+        { "source": 68, "target": 24 },
+        { "source": 68, "target": 27 },
+        { "source": 68, "target": 48 },
+        { "source": 68, "target": 41 },
+        { "source": 69, "target": 25 },
+        { "source": 69, "target": 68 },
+        { "source": 69, "target": 11 },
+        { "source": 69, "target": 24 },
+        { "source": 69, "target": 27 },
+        { "source": 69, "target": 48 },
+        { "source": 69, "target": 41 },
+        { "source": 70, "target": 25 },
+        { "source": 70, "target": 69 },
+        { "source": 70, "target": 68 },
+        { "source": 70, "target": 11 },
+        { "source": 70, "target": 24 },
+        { "source": 70, "target": 27 },
+        { "source": 70, "target": 41 },
+        { "source": 70, "target": 58 },
+        { "source": 71, "target": 27 },
+        { "source": 71, "target": 69 },
+        { "source": 71, "target": 68 },
+        { "source": 71, "target": 70 },
+        { "source": 71, "target": 11 },
+        { "source": 71, "target": 48 },
+        { "source": 71, "target": 41 },
+        { "source": 71, "target": 25 },
+        { "source": 72, "target": 26 },
+        { "source": 72, "target": 27 },
+        { "source": 72, "target": 11 },
+        { "source": 73, "target": 48 },
+        { "source": 74, "target": 48 },
+        { "source": 74, "target": 73 },
+        { "source": 75, "target": 69 },
+        { "source": 75, "target": 68 },
+        { "source": 75, "target": 25 },
+        { "source": 75, "target": 48 },
+        { "source": 75, "target": 41 },
+        { "source": 75, "target": 70 },
+        { "source": 75, "target": 71 },
+        { "source": 76, "target": 64 },
+        { "source": 76, "target": 65 },
+        { "source": 76, "target": 66 },
+        { "source": 76, "target": 63 },
+        { "source": 76, "target": 62 },
+        { "source": 76, "target": 48 },
+        { "source": 76, "target": 58 }
+    ],
+    "nodes": {
+        "0": { "color": "0xaec7e8" },
+        "1": { "color": "0xaec7e8" },
+        "10": { "color": "0xff7f0e" },
+        "11": { "color": "0xff7f0e" },
+        "12": { "color": "0xffbb78" },
+        "13": { "color": "0xff7f0e" },
+        "14": { "color": "0xff7f0e" },
+        "15": { "color": "0xff7f0e" },
+        "16": { "color": "0xffbb78" },
+        "17": { "color": "0xffbb78" },
+        "18": { "color": "0xffbb78" },
+        "19": { "color": "0xffbb78" },
+        "2": { "color": "0xaec7e8" },
+        "20": { "color": "0xffbb78" },
+        "21": { "color": "0xffbb78" },
+        "22": { "color": "0xffbb78" },
+        "23": { "color": "0xffbb78" },
+        "24": { "color": "0x2ca02c" },
+        "25": { "color": "0x2ca02c" },
+        "26": { "color": "0x98df8a" },
+        "27": { "color": "0x2ca02c" },
+        "28": { "color": "0x1f77b4" },
+        "29": { "color": "0xff7f0e" },
+        "3": { "color": "0xaec7e8" },
+        "30": { "color": "0xffbb78" },
+        "31": { "color": "0xff7f0e" },
+        "32": { "color": "0xff7f0e" },
+        "33": { "color": "0xff7f0e" },
+        "34": { "color": "0xff7f0e" },
+        "35": { "color": "0xff7f0e" },
+        "36": { "color": "0xff7f0e" },
+        "37": { "color": "0xff7f0e" },
+        "38": { "color": "0xff7f0e" },
+        "39": { "color": "0x2ca02c" },
+        "4": { "color": "0xaec7e8" },
+        "40": { "color": "0xd62728" },
+        "41": { "color": "0x2ca02c" },
+        "42": { "color": "0x2ca02c" },
+        "43": { "color": "0x98df8a" },
+        "44": { "color": "0x1f77b4" },
+        "45": { "color": "0x1f77b4" },
+        "46": { "color": "0xff9896" },
+        "47": { "color": "0xff9896" },
+        "48": { "color": "0x9467bd" },
+        "49": { "color": "0x98df8a" },
+        "5": { "color": "0xaec7e8" },
+        "50": { "color": "0x98df8a" },
+        "51": { "color": "0x98df8a" },
+        "52": { "color": "0x98df8a" },
+        "53": { "color": "0x98df8a" },
+        "54": { "color": "0x98df8a" },
+        "55": { "color": "0x9467bd" },
+        "56": { "color": "0x98df8a" },
+        "57": { "color": "0x9467bd" },
+        "58": { "color": "0x9467bd" },
+        "59": { "color": "0x9467bd" },
+        "6": { "color": "0xaec7e8" },
+        "60": { "color": "0x9467bd" },
+        "61": { "color": "0x9467bd" },
+        "62": { "color": "0x9467bd" },
+        "63": { "color": "0x9467bd" },
+        "64": { "color": "0x9467bd" },
+        "65": { "color": "0x9467bd" },
+        "66": { "color": "0x9467bd" },
+        "67": { "color": "0xc5b0d5" },
+        "68": { "color": "0x2ca02c" },
+        "69": { "color": "0x2ca02c" },
+        "7": { "color": "0xaec7e8" },
+        "70": { "color": "0x2ca02c" },
+        "71": { "color": "0x2ca02c" },
+        "72": { "color": "0x98df8a" },
+        "73": { "color": "0x8c564b" },
+        "74": { "color": "0x8c564b" },
+        "75": { "color": "0x2ca02c" },
+        "76": { "color": "0x9467bd" },
+        "8": { "color": "0xaec7e8" },
+        "9": { "color": "0xaec7e8" }
+    }
+});
+
+               $d.resizable({
+                   aspectRatio: 600 / 400,
+                   resize: function (evt, ui) {
+                       $d.igraph.renderer.setSize(ui.size.width,
+                                                  ui.size.height);
+                   }
+               });
+           });
+           </script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Because the input is a pure Python data structure, you can programmatically create and edit graphs without learning a new API. This lets you mess around with graph data structures and algorithms without thinking about library-specific semantics.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">number_of_steps</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">b_tree</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+<span class="n">index</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_steps</span><span class="p">):</span>
+    <span class="n">leaves</span> <span class="o">=</span> <span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">b_tree</span> <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">other_edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">other_edge</span> <span class="ow">in</span> <span class="n">b_tree</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="n">leaves</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">b_tree</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">leaf</span><span class="p">,</span> <span class="n">index</span><span class="p">))</span>
+<span class="n">igraph</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">b_tree</span><span class="p">,</span> <span class="n">shader</span><span class="o">=</span><span class="s">&quot;lambert&quot;</span><span class="p">,</span> <span class="n">default_node_color</span><span class="o">=</span><span class="mh">0x383294</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div id="graph_39faf8a9-40f2-4f5e-8928-4e399e117940"></div>
+           <script type="text/javascript">
+           require.config({baseUrl: "/",
+                             paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/js/build/igraph.min']}});
+           require(['igraph'], function () {
+               var $d = $('#graph_39faf8a9-40f2-4f5e-8928-4e399e117940');
                $d.width(800); $d.height(600);
                $d.igraph = jQuery.extend({}, igraph);
                $d.igraph.create($d, {nodeSize: 2.000000, edgeSize: 0.250000,
-                                     defaultNodeColor: '11184895',
-                                     defaultEdgeColor: '0x777777',
+                                     defaultNodeColor: '0x383294',
+                                     defaultEdgeColor: '0xaaaaaa',
                                      shader: 'lambert', z: '200'});
                $d.igraph.draw({
     "edges": [
@@ -516,135 +930,7 @@ div#notebook {
         { "source": 62, "target": 124 },
         { "source": 62, "target": 125 },
         { "source": 63, "target": 126 },
-        { "source": 63, "target": 127 },
-        { "source": 64, "target": 128 },
-        { "source": 64, "target": 129 },
-        { "source": 65, "target": 130 },
-        { "source": 65, "target": 131 },
-        { "source": 66, "target": 132 },
-        { "source": 66, "target": 133 },
-        { "source": 67, "target": 134 },
-        { "source": 67, "target": 135 },
-        { "source": 68, "target": 136 },
-        { "source": 68, "target": 137 },
-        { "source": 69, "target": 138 },
-        { "source": 69, "target": 139 },
-        { "source": 70, "target": 140 },
-        { "source": 70, "target": 141 },
-        { "source": 71, "target": 142 },
-        { "source": 71, "target": 143 },
-        { "source": 72, "target": 144 },
-        { "source": 72, "target": 145 },
-        { "source": 73, "target": 146 },
-        { "source": 73, "target": 147 },
-        { "source": 74, "target": 148 },
-        { "source": 74, "target": 149 },
-        { "source": 75, "target": 150 },
-        { "source": 75, "target": 151 },
-        { "source": 76, "target": 152 },
-        { "source": 76, "target": 153 },
-        { "source": 77, "target": 154 },
-        { "source": 77, "target": 155 },
-        { "source": 78, "target": 156 },
-        { "source": 78, "target": 157 },
-        { "source": 79, "target": 158 },
-        { "source": 79, "target": 159 },
-        { "source": 80, "target": 160 },
-        { "source": 80, "target": 161 },
-        { "source": 81, "target": 162 },
-        { "source": 81, "target": 163 },
-        { "source": 82, "target": 164 },
-        { "source": 82, "target": 165 },
-        { "source": 83, "target": 166 },
-        { "source": 83, "target": 167 },
-        { "source": 84, "target": 168 },
-        { "source": 84, "target": 169 },
-        { "source": 85, "target": 170 },
-        { "source": 85, "target": 171 },
-        { "source": 86, "target": 172 },
-        { "source": 86, "target": 173 },
-        { "source": 87, "target": 174 },
-        { "source": 87, "target": 175 },
-        { "source": 88, "target": 176 },
-        { "source": 88, "target": 177 },
-        { "source": 89, "target": 178 },
-        { "source": 89, "target": 179 },
-        { "source": 90, "target": 180 },
-        { "source": 90, "target": 181 },
-        { "source": 91, "target": 182 },
-        { "source": 91, "target": 183 },
-        { "source": 92, "target": 184 },
-        { "source": 92, "target": 185 },
-        { "source": 93, "target": 186 },
-        { "source": 93, "target": 187 },
-        { "source": 94, "target": 188 },
-        { "source": 94, "target": 189 },
-        { "source": 95, "target": 190 },
-        { "source": 95, "target": 191 },
-        { "source": 96, "target": 192 },
-        { "source": 96, "target": 193 },
-        { "source": 97, "target": 194 },
-        { "source": 97, "target": 195 },
-        { "source": 98, "target": 196 },
-        { "source": 98, "target": 197 },
-        { "source": 99, "target": 198 },
-        { "source": 99, "target": 199 },
-        { "source": 100, "target": 200 },
-        { "source": 100, "target": 201 },
-        { "source": 101, "target": 202 },
-        { "source": 101, "target": 203 },
-        { "source": 102, "target": 204 },
-        { "source": 102, "target": 205 },
-        { "source": 103, "target": 206 },
-        { "source": 103, "target": 207 },
-        { "source": 104, "target": 208 },
-        { "source": 104, "target": 209 },
-        { "source": 105, "target": 210 },
-        { "source": 105, "target": 211 },
-        { "source": 106, "target": 212 },
-        { "source": 106, "target": 213 },
-        { "source": 107, "target": 214 },
-        { "source": 107, "target": 215 },
-        { "source": 108, "target": 216 },
-        { "source": 108, "target": 217 },
-        { "source": 109, "target": 218 },
-        { "source": 109, "target": 219 },
-        { "source": 110, "target": 220 },
-        { "source": 110, "target": 221 },
-        { "source": 111, "target": 222 },
-        { "source": 111, "target": 223 },
-        { "source": 112, "target": 224 },
-        { "source": 112, "target": 225 },
-        { "source": 113, "target": 226 },
-        { "source": 113, "target": 227 },
-        { "source": 114, "target": 228 },
-        { "source": 114, "target": 229 },
-        { "source": 115, "target": 230 },
-        { "source": 115, "target": 231 },
-        { "source": 116, "target": 232 },
-        { "source": 116, "target": 233 },
-        { "source": 117, "target": 234 },
-        { "source": 117, "target": 235 },
-        { "source": 118, "target": 236 },
-        { "source": 118, "target": 237 },
-        { "source": 119, "target": 238 },
-        { "source": 119, "target": 239 },
-        { "source": 120, "target": 240 },
-        { "source": 120, "target": 241 },
-        { "source": 121, "target": 242 },
-        { "source": 121, "target": 243 },
-        { "source": 122, "target": 244 },
-        { "source": 122, "target": 245 },
-        { "source": 123, "target": 246 },
-        { "source": 123, "target": 247 },
-        { "source": 124, "target": 248 },
-        { "source": 124, "target": 249 },
-        { "source": 125, "target": 250 },
-        { "source": 125, "target": 251 },
-        { "source": 126, "target": 252 },
-        { "source": 126, "target": 253 },
-        { "source": 127, "target": 254 },
-        { "source": 127, "target": 255 }
+        { "source": 63, "target": 127 }
     ],
     "nodes": {
         "1": { "location": [ -2.000, -2.000, -2.000 ] },
@@ -707,201 +993,73 @@ div#notebook {
         "58": { "location": [ -2.000, -2.000, -2.000 ] },
         "59": { "location": [ -2.000, -2.000, -2.000 ] },
         "60": { "location": [ -2.000, -2.000, -2.000 ] },
-        "61": { "location": [ -2.000, -2.000, -2.000 ] },
+        "61": { "location": [ -2.000, -2.000, -1.443 ] },
         "62": { "location": [ -2.000, -2.000, -2.000 ] },
-        "63": { "location": [ -2.000, -2.000, -2.000 ] },
-        "64": { "location": [ -2.000, -2.000, -2.000 ] },
-        "65": { "location": [ -2.000, -2.000, -2.000 ] },
-        "66": { "location": [ -2.000, -2.000, -2.000 ] },
-        "67": { "location": [ -2.000, -2.000, -2.000 ] },
-        "68": { "location": [ -2.000, -2.000, -2.000 ] },
-        "69": { "location": [ -2.000, -2.000, -2.000 ] },
-        "70": { "location": [ -2.000, -2.000, -2.000 ] },
-        "71": { "location": [ -2.000, -2.000, -2.000 ] },
-        "72": { "location": [ -2.000, -2.000, -2.000 ] },
-        "73": { "location": [ -2.000, -2.000, -2.000 ] },
-        "74": { "location": [ -2.000, -2.000, -2.000 ] },
-        "75": { "location": [ -2.000, -2.000, -2.000 ] },
-        "76": { "location": [ -2.000, -2.000, -2.000 ] },
-        "77": { "location": [ -2.000, -2.000, -2.000 ] },
-        "78": { "location": [ -2.000, -2.000, -2.000 ] },
-        "79": { "location": [ -2.000, -2.000, -2.000 ] },
-        "80": { "location": [ -2.000, -2.000, -2.000 ] },
-        "81": { "location": [ -2.000, -2.000, -2.000 ] },
-        "82": { "location": [ -2.000, -2.000, -2.000 ] },
-        "83": { "location": [ -2.000, -2.000, -2.000 ] },
-        "84": { "location": [ -2.000, -2.000, -2.000 ] },
-        "85": { "location": [ -2.000, -2.000, -2.000 ] },
-        "86": { "location": [ -2.000, -2.000, -2.000 ] },
-        "87": { "location": [ -2.000, -2.000, -2.000 ] },
-        "88": { "location": [ -2.000, -2.000, -2.000 ] },
-        "89": { "location": [ -2.000, -2.000, -2.000 ] },
-        "90": { "location": [ -2.000, -2.000, -2.000 ] },
-        "91": { "location": [ -2.000, -2.000, -2.000 ] },
-        "92": { "location": [ -2.000, -2.000, -2.000 ] },
-        "93": { "location": [ -2.000, -2.000, -2.000 ] },
-        "94": { "location": [ -2.000, -2.000, -2.000 ] },
-        "95": { "location": [ -2.000, -2.000, -2.000 ] },
-        "96": { "location": [ -2.000, -2.000, -2.000 ] },
-        "97": { "location": [ -2.000, -2.000, -2.000 ] },
-        "98": { "location": [ -2.000, -2.000, -2.000 ] },
-        "99": { "location": [ -2.000, -2.000, -2.000 ] },
-        "100": { "location": [ -2.000, -2.000, -2.000 ] },
-        "101": { "location": [ -2.000, -2.000, -2.000 ] },
-        "102": { "location": [ -2.000, -2.000, -2.000 ] },
-        "103": { "location": [ -2.000, -2.000, -2.000 ] },
-        "104": { "location": [ -2.000, -2.000, -2.000 ] },
-        "105": { "location": [ -2.000, -2.000, -2.000 ] },
-        "106": { "location": [ -2.000, -2.000, -2.000 ] },
-        "107": { "location": [ -2.000, -2.000, -2.000 ] },
-        "108": { "location": [ -2.000, -2.000, -2.000 ] },
-        "109": { "location": [ -2.000, -2.000, -2.000 ] },
-        "110": { "location": [ -2.000, -2.000, -2.000 ] },
-        "111": { "location": [ -2.000, -2.000, -2.000 ] },
-        "112": { "location": [ -2.000, -2.000, -2.000 ] },
-        "113": { "location": [ -2.000, -2.000, -2.000 ] },
-        "114": { "location": [ -2.000, -2.000, -2.000 ] },
-        "115": { "location": [ -2.000, -2.000, -2.000 ] },
-        "116": { "location": [ -2.000, -2.000, -2.000 ] },
-        "117": { "location": [ -2.000, -2.000, -2.000 ] },
-        "118": { "location": [ -2.000, -2.000, -2.000 ] },
-        "119": { "location": [ -2.000, -2.000, -2.000 ] },
-        "120": { "location": [ -2.000, -2.000, -2.000 ] },
-        "121": { "location": [ -2.000, -2.000, -2.000 ] },
-        "122": { "location": [ -2.000, -2.000, -2.000 ] },
-        "123": { "location": [ -2.000, -2.000, -2.000 ] },
-        "124": { "location": [ -2.000, -2.000, -2.000 ] },
-        "125": { "location": [ -0.590, -2.000, -2.000 ] },
-        "126": { "location": [ -1.426, -0.697, -2.000 ] },
-        "127": { "location": [ -0.784, -1.430, -1.376 ] },
-        "128": { "location": [ 0.898, -1.898, -0.867 ] },
-        "129": { "location": [ 2.000, 0.860, 2.000 ] },
-        "130": { "location": [ 2.000, 2.000, 1.141 ] },
-        "131": { "location": [ 1.851, 2.000, 2.000 ] },
-        "132": { "location": [ 2.000, 0.888, 2.000 ] },
-        "133": { "location": [ 2.000, 2.000, 2.000 ] },
-        "134": { "location": [ 2.000, 2.000, 2.000 ] },
-        "135": { "location": [ 2.000, 2.000, 2.000 ] },
-        "136": { "location": [ 2.000, 2.000, 2.000 ] },
-        "137": { "location": [ 2.000, 2.000, 2.000 ] },
-        "138": { "location": [ 2.000, 2.000, 2.000 ] },
-        "139": { "location": [ 2.000, 2.000, 2.000 ] },
-        "140": { "location": [ 2.000, 2.000, 2.000 ] },
-        "141": { "location": [ 2.000, 2.000, 2.000 ] },
-        "142": { "location": [ 2.000, 2.000, 2.000 ] },
-        "143": { "location": [ 2.000, 2.000, 2.000 ] },
-        "144": { "location": [ 2.000, 2.000, 2.000 ] },
-        "145": { "location": [ 2.000, 2.000, 2.000 ] },
-        "146": { "location": [ 2.000, 2.000, 2.000 ] },
-        "147": { "location": [ 2.000, 2.000, 2.000 ] },
-        "148": { "location": [ 2.000, 2.000, 2.000 ] },
-        "149": { "location": [ 2.000, 2.000, 2.000 ] },
-        "150": { "location": [ 2.000, 2.000, 2.000 ] },
-        "151": { "location": [ 2.000, 2.000, 2.000 ] },
-        "152": { "location": [ 2.000, 2.000, 2.000 ] },
-        "153": { "location": [ 2.000, 2.000, 2.000 ] },
-        "154": { "location": [ 2.000, 2.000, 2.000 ] },
-        "155": { "location": [ 2.000, 2.000, 2.000 ] },
-        "156": { "location": [ 2.000, 2.000, 2.000 ] },
-        "157": { "location": [ 2.000, 2.000, 2.000 ] },
-        "158": { "location": [ 2.000, 2.000, 2.000 ] },
-        "159": { "location": [ 2.000, 2.000, 2.000 ] },
-        "160": { "location": [ 2.000, 2.000, 2.000 ] },
-        "161": { "location": [ 2.000, 2.000, 2.000 ] },
-        "162": { "location": [ 2.000, 2.000, 2.000 ] },
-        "163": { "location": [ 2.000, 2.000, 2.000 ] },
-        "164": { "location": [ 2.000, 2.000, 2.000 ] },
-        "165": { "location": [ 2.000, 2.000, 2.000 ] },
-        "166": { "location": [ 2.000, 2.000, 2.000 ] },
-        "167": { "location": [ 2.000, 2.000, 2.000 ] },
-        "168": { "location": [ 2.000, 2.000, 2.000 ] },
-        "169": { "location": [ 2.000, 2.000, 2.000 ] },
-        "170": { "location": [ 2.000, 2.000, 2.000 ] },
-        "171": { "location": [ 2.000, 2.000, 2.000 ] },
-        "172": { "location": [ 2.000, 2.000, 2.000 ] },
-        "173": { "location": [ 2.000, 2.000, 2.000 ] },
-        "174": { "location": [ 2.000, 2.000, 2.000 ] },
-        "175": { "location": [ 2.000, 2.000, 2.000 ] },
-        "176": { "location": [ 2.000, 2.000, 2.000 ] },
-        "177": { "location": [ 2.000, 2.000, 2.000 ] },
-        "178": { "location": [ 2.000, 2.000, 2.000 ] },
-        "179": { "location": [ 2.000, 2.000, 2.000 ] },
-        "180": { "location": [ 2.000, 2.000, 2.000 ] },
-        "181": { "location": [ 2.000, 2.000, 2.000 ] },
-        "182": { "location": [ 2.000, 2.000, 2.000 ] },
-        "183": { "location": [ 2.000, 2.000, 2.000 ] },
-        "184": { "location": [ 2.000, 2.000, 2.000 ] },
-        "185": { "location": [ 2.000, 2.000, 2.000 ] },
-        "186": { "location": [ 2.000, 2.000, 2.000 ] },
-        "187": { "location": [ 2.000, 2.000, 2.000 ] },
-        "188": { "location": [ 2.000, 2.000, 2.000 ] },
-        "189": { "location": [ 2.000, 2.000, 2.000 ] },
-        "190": { "location": [ 2.000, 2.000, 2.000 ] },
-        "191": { "location": [ 2.000, 2.000, 2.000 ] },
-        "192": { "location": [ 2.000, 2.000, 2.000 ] },
-        "193": { "location": [ 2.000, 2.000, 2.000 ] },
-        "194": { "location": [ 2.000, 2.000, 2.000 ] },
-        "195": { "location": [ 2.000, 2.000, 2.000 ] },
-        "196": { "location": [ 2.000, 2.000, 2.000 ] },
-        "197": { "location": [ 2.000, 2.000, 2.000 ] },
-        "198": { "location": [ 2.000, 2.000, 2.000 ] },
-        "199": { "location": [ 2.000, 2.000, 2.000 ] },
-        "200": { "location": [ 2.000, 2.000, 2.000 ] },
-        "201": { "location": [ 2.000, 2.000, 2.000 ] },
-        "202": { "location": [ 2.000, 2.000, 2.000 ] },
-        "203": { "location": [ 2.000, 2.000, 2.000 ] },
-        "204": { "location": [ 2.000, 2.000, 2.000 ] },
-        "205": { "location": [ 2.000, 2.000, 2.000 ] },
-        "206": { "location": [ 2.000, 2.000, 2.000 ] },
-        "207": { "location": [ 2.000, 2.000, 2.000 ] },
-        "208": { "location": [ 2.000, 2.000, 2.000 ] },
-        "209": { "location": [ 2.000, 2.000, 2.000 ] },
-        "210": { "location": [ 2.000, 2.000, 2.000 ] },
-        "211": { "location": [ 2.000, 2.000, 2.000 ] },
-        "212": { "location": [ 2.000, 2.000, 2.000 ] },
-        "213": { "location": [ 2.000, 2.000, 2.000 ] },
-        "214": { "location": [ 2.000, 2.000, 2.000 ] },
-        "215": { "location": [ 2.000, 2.000, 2.000 ] },
-        "216": { "location": [ 2.000, 2.000, 2.000 ] },
-        "217": { "location": [ 2.000, 2.000, 2.000 ] },
-        "218": { "location": [ 2.000, 2.000, 2.000 ] },
-        "219": { "location": [ 2.000, 2.000, 2.000 ] },
-        "220": { "location": [ 2.000, 2.000, 2.000 ] },
-        "221": { "location": [ 2.000, 2.000, 2.000 ] },
-        "222": { "location": [ 2.000, 2.000, 2.000 ] },
-        "223": { "location": [ 2.000, 2.000, 2.000 ] },
-        "224": { "location": [ 2.000, 2.000, 2.000 ] },
-        "225": { "location": [ 2.000, 2.000, 2.000 ] },
-        "226": { "location": [ 2.000, 2.000, 2.000 ] },
-        "227": { "location": [ 2.000, 2.000, 2.000 ] },
-        "228": { "location": [ 2.000, 2.000, 2.000 ] },
-        "229": { "location": [ 2.000, 2.000, 2.000 ] },
-        "230": { "location": [ 2.000, 2.000, 2.000 ] },
-        "231": { "location": [ 2.000, 2.000, 2.000 ] },
-        "232": { "location": [ 2.000, 2.000, 2.000 ] },
-        "233": { "location": [ 2.000, 2.000, 2.000 ] },
-        "234": { "location": [ 2.000, 2.000, 2.000 ] },
-        "235": { "location": [ 2.000, 2.000, 2.000 ] },
-        "236": { "location": [ 2.000, 2.000, 2.000 ] },
-        "237": { "location": [ 2.000, 2.000, 2.000 ] },
-        "238": { "location": [ 2.000, 2.000, 2.000 ] },
-        "239": { "location": [ 2.000, 2.000, 2.000 ] },
-        "240": { "location": [ 2.000, 2.000, 2.000 ] },
-        "241": { "location": [ 2.000, 2.000, 2.000 ] },
-        "242": { "location": [ 2.000, 2.000, 2.000 ] },
-        "243": { "location": [ 2.000, 2.000, 2.000 ] },
-        "244": { "location": [ 2.000, 2.000, 2.000 ] },
-        "245": { "location": [ 2.000, 2.000, 2.000 ] },
-        "246": { "location": [ 2.000, 2.000, 2.000 ] },
-        "247": { "location": [ 2.000, 2.000, 2.000 ] },
-        "248": { "location": [ 2.000, 2.000, 2.000 ] },
-        "249": { "location": [ 2.000, 2.000, 2.000 ] },
-        "250": { "location": [ 2.000, 2.000, 2.000 ] },
-        "251": { "location": [ 2.000, 2.000, 2.000 ] },
-        "252": { "location": [ 2.000, 2.000, 2.000 ] },
-        "253": { "location": [ 2.000, 2.000, 2.000 ] },
-        "254": { "location": [ 2.000, 2.000, 2.000 ] },
-        "255": { "location": [ 2.000, 2.000, 2.000 ] }
+        "63": { "location": [ -2.000, -0.117, 0.270 ] },
+        "64": { "location": [ -0.919, 1.284, -0.702 ] },
+        "65": { "location": [ 1.678, 1.944, 1.002 ] },
+        "66": { "location": [ 0.872, 1.809, 2.000 ] },
+        "67": { "location": [ 2.000, 2.000, 2.000 ] },
+        "68": { "location": [ 2.000, 2.000, 2.000 ] },
+        "69": { "location": [ 2.000, 2.000, 2.000 ] },
+        "70": { "location": [ 2.000, 2.000, 2.000 ] },
+        "71": { "location": [ 2.000, 2.000, 2.000 ] },
+        "72": { "location": [ 2.000, 2.000, 2.000 ] },
+        "73": { "location": [ 2.000, 2.000, 2.000 ] },
+        "74": { "location": [ 2.000, 2.000, 2.000 ] },
+        "75": { "location": [ 2.000, 2.000, 2.000 ] },
+        "76": { "location": [ 2.000, 2.000, 2.000 ] },
+        "77": { "location": [ 2.000, 2.000, 2.000 ] },
+        "78": { "location": [ 2.000, 2.000, 2.000 ] },
+        "79": { "location": [ 2.000, 2.000, 2.000 ] },
+        "80": { "location": [ 2.000, 2.000, 2.000 ] },
+        "81": { "location": [ 2.000, 2.000, 2.000 ] },
+        "82": { "location": [ 2.000, 2.000, 2.000 ] },
+        "83": { "location": [ 2.000, 2.000, 2.000 ] },
+        "84": { "location": [ 2.000, 2.000, 2.000 ] },
+        "85": { "location": [ 2.000, 2.000, 2.000 ] },
+        "86": { "location": [ 2.000, 2.000, 2.000 ] },
+        "87": { "location": [ 2.000, 2.000, 2.000 ] },
+        "88": { "location": [ 2.000, 2.000, 2.000 ] },
+        "89": { "location": [ 2.000, 2.000, 2.000 ] },
+        "90": { "location": [ 2.000, 2.000, 2.000 ] },
+        "91": { "location": [ 2.000, 2.000, 2.000 ] },
+        "92": { "location": [ 2.000, 2.000, 2.000 ] },
+        "93": { "location": [ 2.000, 2.000, 2.000 ] },
+        "94": { "location": [ 2.000, 2.000, 2.000 ] },
+        "95": { "location": [ 2.000, 2.000, 2.000 ] },
+        "96": { "location": [ 2.000, 2.000, 2.000 ] },
+        "97": { "location": [ 2.000, 2.000, 2.000 ] },
+        "98": { "location": [ 2.000, 2.000, 2.000 ] },
+        "99": { "location": [ 2.000, 2.000, 2.000 ] },
+        "100": { "location": [ 2.000, 2.000, 2.000 ] },
+        "101": { "location": [ 2.000, 2.000, 2.000 ] },
+        "102": { "location": [ 2.000, 2.000, 2.000 ] },
+        "103": { "location": [ 2.000, 2.000, 2.000 ] },
+        "104": { "location": [ 2.000, 2.000, 2.000 ] },
+        "105": { "location": [ 2.000, 2.000, 2.000 ] },
+        "106": { "location": [ 2.000, 2.000, 2.000 ] },
+        "107": { "location": [ 2.000, 2.000, 2.000 ] },
+        "108": { "location": [ 2.000, 2.000, 2.000 ] },
+        "109": { "location": [ 2.000, 2.000, 2.000 ] },
+        "110": { "location": [ 2.000, 2.000, 2.000 ] },
+        "111": { "location": [ 2.000, 2.000, 2.000 ] },
+        "112": { "location": [ 2.000, 2.000, 2.000 ] },
+        "113": { "location": [ 2.000, 2.000, 2.000 ] },
+        "114": { "location": [ 2.000, 2.000, 2.000 ] },
+        "115": { "location": [ 2.000, 2.000, 2.000 ] },
+        "116": { "location": [ 2.000, 2.000, 2.000 ] },
+        "117": { "location": [ 2.000, 2.000, 2.000 ] },
+        "118": { "location": [ 2.000, 2.000, 2.000 ] },
+        "119": { "location": [ 2.000, 2.000, 2.000 ] },
+        "120": { "location": [ 2.000, 2.000, 2.000 ] },
+        "121": { "location": [ 2.000, 2.000, 2.000 ] },
+        "122": { "location": [ 2.000, 2.000, 2.000 ] },
+        "123": { "location": [ 2.000, 2.000, 2.000 ] },
+        "124": { "location": [ 2.000, 2.000, 2.000 ] },
+        "125": { "location": [ 2.000, 2.000, 2.000 ] },
+        "126": { "location": [ 2.000, 2.000, 2.000 ] },
+        "127": { "location": [ 2.000, 2.000, 2.000 ] }
     }
 });
 
@@ -934,7 +1092,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">help</span><span class="p">(</span><span class="n">igraph</span><span class="o">.</span><span class="n">draw</span><span class="p">)</span>
@@ -952,25 +1110,24 @@ div#notebook {
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Help on function draw in module igraph.notebook:
 
-draw(data, size=(400, 300), node_size=2.0, edge_size=0.25, default_node_color=&apos;0xaaaaaa&apos;, default_edge_color=&apos;0x777777&apos;, z=20, shader=&apos;toon&apos;)
+draw(data, size=(600, 400), node_size=2.0, edge_size=0.25, default_node_color=6013150, default_edge_color=11184810, z=100, shader=&apos;basic&apos;)
     Draws an interactive 3D visualization of the inputted graph.
     
     Args:
-        data: Either an adjacency list of tuples (ie. [(1,2),...]) or json
+        data: Either an adjacency list of tuples (ie. [(1,2),...]) or object
         size: (Optional) Dimensions of visualization, in pixels
         node_size: (Optional) Defaults to 2.0
         edge_size: (Optional) Defaults to 0.25
         default_node_color: (Optional) If loading data without specified
-            &quot;color&quot; properties, this will be used. Default is &quot;0xaaaaaa&quot;
+            &quot;color&quot; properties, this will be used. Default is 0x5bc0de
         default_edge_color: (Optional) If loading data without specified
-            &quot;color&quot; properties, this will be used. Default is &quot;0x222222&quot;
-        z: (Optional) Starting z position of the camera. Default is 20
+            &quot;color&quot; properties, this will be used. Default is 0xaaaaaa
+        z: (Optional) Starting z position of the camera. Default is 100.
         shader: (Optional) Specifies shading algorithm to use. Can be &quot;toon&quot;,
-            &quot;basic&quot;, &quot;phong&quot;, or &quot;lambert&quot;.
+            &quot;basic&quot;, &quot;phong&quot;, or &quot;lambert&quot;. Default is &quot;basic&quot;.
     
     Inputting an adjacency list into &#96;data&#96; results in a &quot;default&quot; graph type.
-    For more customization, generate a json file using other methods before
-    running the drawer.
+    For more customization, use the more expressive object format.
 
 </pre>
 </div>
@@ -992,7 +1149,7 @@ draw(data, size=(400, 300), node_size=2.0, edge_size=0.25, default_node_color=&a
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">help</span><span class="p">(</span><span class="n">igraph</span><span class="o">.</span><span class="n">generate</span><span class="p">)</span>
@@ -1031,19 +1188,6 @@ generate(data, iterations=1000, force_strength=5.0, dampening=0.01, max_velocity
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre> 
-</pre></div>
-
-</div>
 </div>
 </div>
 

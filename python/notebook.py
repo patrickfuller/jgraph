@@ -10,33 +10,32 @@ remote_path = ("https://rawgit.com/patrickfuller/igraph/master/"
                "js/build/igraph.min.js")
 
 
-def draw(data, size=(400, 300), node_size=2.0, edge_size=0.25,
-         default_node_color="0xaaaaaa", default_edge_color="0x777777", z=20,
-         shader="toon"):
+def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
+         default_node_color=0x5bc0de, default_edge_color=0xaaaaaa, z=100,
+         shader="basic"):
     """Draws an interactive 3D visualization of the inputted graph.
 
     Args:
-        data: Either an adjacency list of tuples (ie. [(1,2),...]) or json
+        data: Either an adjacency list of tuples (ie. [(1,2),...]) or object
         size: (Optional) Dimensions of visualization, in pixels
         node_size: (Optional) Defaults to 2.0
         edge_size: (Optional) Defaults to 0.25
         default_node_color: (Optional) If loading data without specified
-            "color" properties, this will be used. Default is "0xaaaaaa"
+            "color" properties, this will be used. Default is 0x5bc0de
         default_edge_color: (Optional) If loading data without specified
-            "color" properties, this will be used. Default is "0x222222"
-        z: (Optional) Starting z position of the camera. Default is 20
+            "color" properties, this will be used. Default is 0xaaaaaa
+        z: (Optional) Starting z position of the camera. Default is 100.
         shader: (Optional) Specifies shading algorithm to use. Can be "toon",
-            "basic", "phong", or "lambert".
+            "basic", "phong", or "lambert". Default is "basic".
 
     Inputting an adjacency list into `data` results in a "default" graph type.
-    For more customization, generate a json file using other methods before
-    running the drawer.
+    For more customization, use the more expressive object format.
     """
     # Catch errors on string-based input before getting js involved
     shader_options = ["toon", "basic", "phong", "lambert"]
     if shader not in shader_options:
-        raise Exception("Invalid shader! Please use one of: "
-                        + ", ".join(shader_options))
+        raise Exception("Invalid shader! Please use one of: " +
+                        ", ".join(shader_options))
 
     # Try using IPython >=2.0 to install js locally
     try:
@@ -45,6 +44,11 @@ def draw(data, size=(400, 300), node_size=2.0, edge_size=0.25,
                              "js/build", filename)], verbose=0)
     except:
         pass
+
+    if isinstance(default_edge_color, int):
+        default_edge_color = hex(default_edge_color)
+    if isinstance(default_node_color, int):
+        default_node_color = hex(default_node_color)
 
     # Guess the input format and handle accordingly
     if isinstance(data, list):
