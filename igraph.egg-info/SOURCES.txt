@@ -1,0 +1,16 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+igraph.egg-info/PKG-INFO
+igraph.egg-info/SOURCES.txt
+igraph.egg-info/dependency_links.txt
+igraph.egg-info/requires.txt
+igraph.egg-info/top_level.txt
+js/build/igraph.min.js
+python/__init__.py
+python/force_directed_layout.py
+python/json_formatter.py
+python/notebook.py
+python/setup.py

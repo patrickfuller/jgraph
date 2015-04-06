@@ -1,0 +1,61 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #fff;
+  color: #222;
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+
+  -webkit-transition: 0.15s color ease;
+     -moz-transition: 0.15s color ease;
+      -ms-transition: 0.15s color ease;
+       -o-transition: 0.15s color ease;
+          transition: 0.15s color ease;
+}
+
+.graph {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.description {
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
+  left: 30px;
+  margin: 10px;
+  position: absolute;
+  top: 30px;
+  width: 400px;
+  z-index: 100;
+}
+
+.description a {
+  color: #6a9fb5;
+}
+
+.description a:hover {
+  color: #b7ecff;
+}
+
+.label {
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  position: absolute;
+}
