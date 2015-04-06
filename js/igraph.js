@@ -333,15 +333,13 @@ var igraph = {
                 n1 = self.nodes[e.source];
                 n2 = self.nodes[e.target];
                 mag = n2.position.distanceTo(n1.position);
-                if (mag > 0.1) {
-                    e.position.addVectors(n1.position, n2.position).divideScalar(2.0);
-                    e.lookAt(n2.position);
-                    e.scale.z = mag;
-                    if (self.directed) {
-                        a = self.arrows[j];
-                        a.position.copy(e.position);
-                        a.lookAt(n2.position);
-                    }
+                e.position.addVectors(n1.position, n2.position).divideScalar(2.0);
+                e.lookAt(n2.position);
+                e.scale.z = mag;
+                if (self.directed) {
+                    a = self.arrows[j];
+                    a.position.copy(e.position);
+                    a.lookAt(n2.position);
                 }
             }
         };
