@@ -3,6 +3,10 @@
  * @author Mark Lundin 	/ http://mark-lundin.com
  */
 
+if( typeof require === 'function' && !THREE ) {
+    var THREE = require( 'three' );
+}
+
 THREE.TrackballControls = function ( object, domElement ) {
 
 	var _this = this;
