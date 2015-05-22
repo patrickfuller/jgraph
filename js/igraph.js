@@ -1,5 +1,15 @@
-/*global THREE, $, jQuery, window, setTimeout*/
+/*global THREE, $, jQuery, window, setTimeout, require, module*/
 "use strict";
+
+// browserify support
+// More below after igraph is defined.
+if( typeof require === 'function' ) {
+    if( !$ ) var $ = require( 'jquery' );
+    if( !THREE ) {
+        var THREE = require( 'three' );
+        require( './TrackballControls' );
+    }
+}
 
 var igraph = {
 
@@ -349,3 +359,7 @@ var igraph = {
         }
     }
 };
+
+if( typeof module === 'object' ) {
+    module.exports = igraph;
+}
