@@ -10,7 +10,7 @@ Examples
  * [github connections](http://patrickfuller.github.io/igraph/examples/github.html)
 
 IPython
-=====
+=======
 
 The IPython notebook is an open-source tool poised to replace MATLAB in many
 applications. As a scientist of sorts, I'm all about it. Therefore, I made
@@ -36,13 +36,13 @@ example](http://patrickfuller.github.io/igraph/examples/ipython.html) for more.
 Javascript
 ==========
 
-Start by downloading the minified javascript file:
+You can install through [npm](https://www.npmjs.com/):
 
 ```
-wget https://raw.githubusercontent.com/patrickfuller/igraph/master/js/build/igraph.min.js
+npm install igraph
 ```
 
-Include this file alongside [jQuery](http://jquery.com/) in your project, and then use with:
+Once installed, you can use with:
 
 ```javascript
 igraph.create('my-selector');
@@ -50,7 +50,7 @@ igraph.draw(myGraph);
 ```
 
 where `'my-selector'` is where you want to place igraph, and `myGraph` is a
-plain ol' object. See below for more on the object structure, or just check out
+javascript object. See below for more on the object structure, or just check out
 the included example. The `igraph.create()` method takes a few optional
 parameters, specifying the sizes and colors of nodes, as well as force-directed
 optimization.
