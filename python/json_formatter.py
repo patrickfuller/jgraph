@@ -17,7 +17,7 @@ loads = json.loads
 
 def compress(obj):
     """Outputs json without whitespace."""
-    return json.dumps(obj, sort_keys=True, separators=(",", ":"),
+    return json.dumps(obj, sort_keys=True, separators=(',', ':'),
                       cls=CustomEncoder)
 
 
@@ -39,23 +39,23 @@ class CustomEncoder(json.JSONEncoder):
     def postprocess(self, json_string):
         """Displays each entry on its own line."""
         is_compressing, is_hash, compressed, spaces = False, False, [], 0
-        for row in json_string.split("\n"):
+        for row in json_string.split('\n'):
             if is_compressing:
-                if (row[:spaces + 5] == " " * (spaces + 4) +
-                        ("\"" if is_hash else "{")):
+                if (row[:spaces + 5] == ' ' * (spaces + 4) +
+                        ('"' if is_hash else '{')):
                     compressed.append(row.rstrip())
-                elif (len(row) > spaces and row[:spaces] == " " * spaces and
-                        re.match("[\]\}],?", row[spaces:].rstrip())):
+                elif (len(row) > spaces and row[:spaces] == ' ' * spaces and
+                        re.match('[\]\}],?', row[spaces:].rstrip())):
                     compressed.append(row.rstrip())
                     is_compressing = False
                 else:
-                    compressed[-1] += " " + row.strip()
+                    compressed[-1] += ' ' + row.strip()
             else:
                 compressed.append(row.rstrip())
-                if any(a in row for a in ["edges", "nodes"]):
+                if any(a in row for a in ['edges', 'nodes']):
                     # Fix to handle issues that arise with empty lists
-                    if "[]" in row:
+                    if '[]' in row:
                         continue
                     spaces = sum(1 for _ in takewhile(str.isspace, row))
-                    is_compressing, is_hash = True, "{" in row
-        return "\n".join(compressed)
+                    is_compressing, is_hash = True, '{' in row
+        return '\n'.join(compressed)

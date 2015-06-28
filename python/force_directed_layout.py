@@ -20,11 +20,11 @@ def run(edges, iterations=1000, force_strength=5.0, dampening=0.01,
     """
 
     # Get a list of node ids from the edge data
-    nodes = set(e["source"] for e in edges) | set(e["target"] for e in edges)
+    nodes = set(e['source'] for e in edges) | set(e['target'] for e in edges)
 
     # Convert to a data-storing object and initialize some values
     d = 3 if is_3d else 2
-    nodes = {n: {"velocity": [0.0] * d, "force": [0.0] * d} for n in nodes}
+    nodes = {n: {'velocity': [0.0] * d, 'force': [0.0] * d} for n in nodes}
 
     # Repeat n times (is there a more Pythonic way to do this?)
     for _ in repeat(None, iterations):
@@ -35,34 +35,34 @@ def run(edges, iterations=1000, force_strength=5.0, dampening=0.01,
 
         # And Hooke-esque edge spring forces
         for edge in edges:
-            _hooke(nodes[edge["source"]], nodes[edge["target"]],
+            _hooke(nodes[edge['source']], nodes[edge['target']],
                    force_strength, max_distance)
 
         # Move by resultant force
         for node in nodes.values():
             # Constrain the force to the bounds specified by input parameter
             force = [_constrain(dampening * f, -max_velocity, max_velocity)
-                     for f in node["force"]]
+                     for f in node['force']]
             # Update velocities and reset force
-            node["velocity"] = [v + dv
-                                for v, dv in zip(node["velocity"], force)]
-            node["force"] = [0] * d
+            node['velocity'] = [v + dv
+                                for v, dv in zip(node['velocity'], force)]
+            node['force'] = [0] * d
 
     # Clean and return
     for node in nodes.values():
-        del node["force"]
-        node["location"] = node["velocity"]
-        del node["velocity"]
+        del node['force']
+        node['location'] = node['velocity']
+        del node['velocity']
         # Even if it's 2D, let's specify three dimensions
         if not is_3d:
-            node["location"] += [0.0]
+            node['location'] += [0.0]
     return nodes
 
 
 def _coulomb(n1, n2, k, r):
     """Calculates Coulomb forces and updates node data."""
     # Get relevant positional data
-    delta = [x2 - x1 for x1, x2 in zip(n1["velocity"], n2["velocity"])]
+    delta = [x2 - x1 for x1, x2 in zip(n1['velocity'], n2['velocity'])]
     distance = sqrt(sum(d ** 2 for d in delta))
 
     # If the deltas are too small, use random values to keep things moving
@@ -73,14 +73,14 @@ def _coulomb(n1, n2, k, r):
     # If the distance isn't huge (ie. Coulomb is negligible), calculate
     if distance < r:
         force = (k / distance) ** 2
-        n1["force"] = [f - force * d for f, d in zip(n1["force"], delta)]
-        n2["force"] = [f + force * d for f, d in zip(n2["force"], delta)]
+        n1['force'] = [f - force * d for f, d in zip(n1['force'], delta)]
+        n2['force'] = [f + force * d for f, d in zip(n2['force'], delta)]
 
 
 def _hooke(n1, n2, k, r):
     """Calculates Hooke spring forces and updates node data."""
     # Get relevant positional data
-    delta = [x2 - x1 for x1, x2 in zip(n1["velocity"], n2["velocity"])]
+    delta = [x2 - x1 for x1, x2 in zip(n1['velocity'], n2['velocity'])]
     distance = sqrt(sum(d ** 2 for d in delta))
 
     # If the deltas are too small, use random values to keep things moving
@@ -93,8 +93,8 @@ def _hooke(n1, n2, k, r):
 
     # Calculate Hooke force and update nodes
     force = (distance ** 2 - k ** 2) / (distance * k)
-    n1["force"] = [f + force * d for f, d in zip(n1["force"], delta)]
-    n2["force"] = [f - force * d for f, d in zip(n2["force"], delta)]
+    n1['force'] = [f + force * d for f, d in zip(n1['force'], delta)]
+    n2['force'] = [f - force * d for f, d in zip(n2['force'], delta)]
 
 
 def _constrain(value, min_value, max_value):
@@ -102,7 +102,7 @@ def _constrain(value, min_value, max_value):
     return max(min_value, min(value, max_value))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import sys
     import json
     import json_formatter
@@ -115,18 +115,18 @@ if __name__ == "__main__":
         edges = json.loads(sys.argv[-1])
 
     # Convert to internal representation
-    edges = [{"source": str(s), "target": str(t)} for s, t in edges]
+    edges = [{'source': str(s), 'target': str(t)} for s, t in edges]
 
     # Handle additional args
-    kwargs = {"force_strength": 5.0, "is_3d": True}
+    kwargs = {'force_strength': 5.0, 'is_3d': True}
     for i, arg in enumerate(sys.argv):
-        if arg == "--force-strength":
-            kwargs["force_strength"] = float(sys.argv[i + 1])
-        elif arg == "--2D":
-            kwargs["is_3d"] = False
+        if arg == '--force-strength':
+            kwargs['force_strength'] = float(sys.argv[i + 1])
+        elif arg == '--2D':
+            kwargs['is_3d'] = False
 
     # Generate nodes
     nodes = run(edges, **kwargs)
 
     # Convert to json and print
-    print(json_formatter.dumps({"edges": edges, "nodes": nodes}))
+    print(json_formatter.dumps({'edges': edges, 'nodes': nodes}))

@@ -3,16 +3,16 @@ import os
 import uuid
 from . import force_directed_layout, json_formatter
 
-filename = "igraph.min.js"
+filename = 'igraph.min.js'
 file_path = os.path.normpath(os.path.dirname(__file__))
-local_path = os.path.join("nbextensions", filename)
-remote_path = ("https://rawgit.com/patrickfuller/igraph/master/"
-               "js/build/igraph.min.js")
+local_path = os.path.join('nbextensions', filename)
+remote_path = ('https://rawgit.com/patrickfuller/igraph/master/'
+               'js/build/igraph.min.js')
 
 
 def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
          default_node_color=0x5bc0de, default_edge_color=0xaaaaaa, z=100,
-         shader="basic"):
+         shader='basic'):
     """Draws an interactive 3D visualization of the inputted graph.
 
     Args:
@@ -21,27 +21,27 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
         node_size: (Optional) Defaults to 2.0
         edge_size: (Optional) Defaults to 0.25
         default_node_color: (Optional) If loading data without specified
-            "color" properties, this will be used. Default is 0x5bc0de
+            'color' properties, this will be used. Default is 0x5bc0de
         default_edge_color: (Optional) If loading data without specified
-            "color" properties, this will be used. Default is 0xaaaaaa
+            'color' properties, this will be used. Default is 0xaaaaaa
         z: (Optional) Starting z position of the camera. Default is 100.
-        shader: (Optional) Specifies shading algorithm to use. Can be "toon",
-            "basic", "phong", or "lambert". Default is "basic".
+        shader: (Optional) Specifies shading algorithm to use. Can be 'toon',
+            'basic', 'phong', or 'lambert'. Default is 'basic'.
 
-    Inputting an adjacency list into `data` results in a "default" graph type.
+    Inputting an adjacency list into `data` results in a 'default' graph type.
     For more customization, use the more expressive object format.
     """
     # Catch errors on string-based input before getting js involved
-    shader_options = ["toon", "basic", "phong", "lambert"]
+    shader_options = ['toon', 'basic', 'phong', 'lambert']
     if shader not in shader_options:
-        raise Exception("Invalid shader! Please use one of: " +
-                        ", ".join(shader_options))
+        raise Exception('Invalid shader! Please use one of: ' +
+                        ', '.join(shader_options))
 
     # Try using IPython >=2.0 to install js locally
     try:
         from IPython.html.nbextensions import install_nbextension
         install_nbextension([os.path.join(file_path,
-                             "js/build", filename)], verbose=0)
+                             'js/build', filename)], verbose=0)
     except:
         pass
 
@@ -55,10 +55,10 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
         graph = json_formatter.dumps(generate(data, iterations=1))
     elif isinstance(data, dict):
         # Convert color hex to string for json handling
-        for node_key in data["nodes"]:
-            node = data["nodes"][node_key]
-            if "color" in node and isinstance(node["color"], int):
-                node["color"] = hex(node["color"])
+        for node_key in data['nodes']:
+            node = data['nodes'][node_key]
+            if 'color' in node and isinstance(node['color'], int):
+                node['color'] = hex(node['color'])
         graph = json_formatter.dumps(data)
     else:
         # Support both files and strings
@@ -68,35 +68,39 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
         except:
             graph = data
 
-            node["color"] = hex(node["color"])
+            node['color'] = hex(node['color'])
 
     div_id = uuid.uuid4()
-    html = """<div id="graph_%s"></div>
+    html = '''<div id="graph_{id}"></div>
            <script type="text/javascript">
            require.config({baseUrl: "/",
-                             paths: {igraph: ['%s', '%s']}});
+                             paths: {igraph: ['{local}', '{remote}']}});
            require(['igraph'], function () {
-               var $d = $('#graph_%s');
-               $d.width(%d); $d.height(%d);
-               $d.igraph = jQuery.extend({}, igraph);
-               $d.igraph.create($d, {nodeSize: %f, edgeSize: %f,
-                                     defaultNodeColor: '%s',
-                                     defaultEdgeColor: '%s',
-                                     shader: '%s', z: '%s'});
-               $d.igraph.draw(%s);
+               var $d = $('#graph_{id}');
+               $d.width({w}); $d.height({h});
+               $d.igraph = jQuery.extend({{}}, igraph);
+               $d.igraph.create($d, {nodeSize: {node_size},
+                                     edgeSize: {edge_size},
+                                     defaultNodeColor: '{node_color}',
+                                     defaultEdgeColor: '{edge_color}',
+                                     shader: '{shader}',
+                                     z: {z}});
+               $d.igraph.draw({graph});
 
                $d.resizable({
-                   aspectRatio: %d / %d,
+                   aspectRatio: {w} / {h},
                    resize: function (evt, ui) {
                        $d.igraph.renderer.setSize(ui.size.width,
                                                   ui.size.height);
                    }
                });
            });
-           </script>""" % (div_id, local_path[:-3], remote_path[:-3],
-                           div_id, size[0], size[1], node_size, edge_size,
-                           default_node_color, default_edge_color, shader,
-                           z, graph, size[0], size[1])
+           </script>'''.format(id=div_id, local=local_path[:-3],
+                               remote=remote_path[:-3], w=size[0], h=size[1],
+                               node_size=node_size, edge_size=edge_size,
+                               node_color=default_node_color,
+                               edge_color=default_edge_color, shader=shader,
+                               z=z, graph=graph)
 
     # Execute js and display the results in a div (see script for more)
     display(HTML(html))
@@ -121,11 +125,11 @@ def generate(data, iterations=1000, force_strength=5.0, dampening=0.01,
     `igraph.draw(...)`.
     """
 
-    edges = [{"source": s, "target": t} for s, t in data]
+    edges = [{'source': s, 'target': t} for s, t in data]
     nodes = force_directed_layout.run(edges, iterations, force_strength,
                                       dampening, max_velocity, max_distance,
                                       is_3d)
-    return {"edges": edges, "nodes": nodes}
+    return {'edges': edges, 'nodes': nodes}
 
 
 def to_json(data):
