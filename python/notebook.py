@@ -71,36 +71,36 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
             node['color'] = hex(node['color'])
 
     div_id = uuid.uuid4()
-    html = '''<div id="graph_{id}"></div>
+    html = '''<div id="graph-%(id)s"></div>
            <script type="text/javascript">
-           require.config({baseUrl: "/",
-                             paths: {igraph: ['{local}', '{remote}']}});
+           require.config({baseUrl: '/',
+                             paths: {igraph: ['%(local)s', '%(remote)s']}});
            require(['igraph'], function () {
-               var $d = $('#graph_{id}');
-               $d.width({w}); $d.height({h});
-               $d.igraph = jQuery.extend({{}}, igraph);
-               $d.igraph.create($d, {nodeSize: {node_size},
-                                     edgeSize: {edge_size},
-                                     defaultNodeColor: '{node_color}',
-                                     defaultEdgeColor: '{edge_color}',
-                                     shader: '{shader}',
-                                     z: {z}});
-               $d.igraph.draw({graph});
+               var $d = $('#graph-%(id)s');
+               $d.width(%(w)d); $d.height(%(h)d);
+               $d.igraph = jQuery.extend({}, igraph);
+               $d.igraph.create($d, {nodeSize: %(node_size)f,
+                                     edgeSize: %(edge_size)f,
+                                     defaultNodeColor: '%(node_color)s',
+                                     defaultEdgeColor: '%(edge_color)s',
+                                     shader: '%(shader)s',
+                                     z: %(z)d,
+               $d.igraph.draw(%(graph)s);
 
                $d.resizable({
-                   aspectRatio: {w} / {h},
+                   aspectRatio: %(w)d / %(h)d,
                    resize: function (evt, ui) {
                        $d.igraph.renderer.setSize(ui.size.width,
                                                   ui.size.height);
                    }
                });
            });
-           </script>'''.format(id=div_id, local=local_path[:-3],
+           </script>''' % dict(id=div_id, local=local_path[:-3],
                                remote=remote_path[:-3], w=size[0], h=size[1],
                                node_size=node_size, edge_size=edge_size,
                                node_color=default_node_color,
                                edge_color=default_edge_color, shader=shader,
-                               z=z, graph=graph)
+                               z=z, graph=graph,
 
     # Execute js and display the results in a div (see script for more)
     display(HTML(html))
