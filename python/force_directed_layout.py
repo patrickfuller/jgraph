@@ -36,7 +36,7 @@ def run(edges, iterations=1000, force_strength=5.0, dampening=0.01,
         # And Hooke-esque edge spring forces
         for edge in edges:
             _hooke(nodes[edge['source']], nodes[edge['target']],
-                   force_strength, max_distance)
+                   force_strength * edge.get('size', 1), max_distance)
 
         # Move by resultant force
         for node in nodes.values():

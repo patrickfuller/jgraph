@@ -353,6 +353,9 @@ var igraph = (function () {
                     }
                     mag = Math.min(mag, maxDistance);
                     delta.multiplyScalar((mag * mag - forceStrength * forceStrength) / (mag * forceStrength));
+                    if (self.edges[j].hasOwnProperty('size')) {
+                        delta.multiplyScalar(self.edges[j].size);
+                    }
                     n1.force.add(delta.clone().multiplyScalar(n2.scale.x));
                     n2.force.sub(delta.clone().multiplyScalar(n1.scale.x));
                 }
