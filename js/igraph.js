@@ -83,7 +83,7 @@ var igraph = (function () {
          * Draws webgl meshes from input javascript object
          */
         draw: function (graph) {
-            var material, mesh, arrow, mag, self, map, n1, n2;
+            var material, mesh, arrow, mag, self, map, n1, n2, sqrt;
             self = this;
             map = {};
             this.current = graph;
@@ -126,7 +126,12 @@ var igraph = (function () {
                 mesh.position.addVectors(n1.position, n2.position).divideScalar(2.0);
                 mesh.lookAt(n2.position);
                 mag = n2.position.distanceTo(n1.position);
-                mesh.scale.z = mag;
+
+                if (edge.hasOwnProperty('size')) {
+                    mesh.scale.set(edge.size, edge.size, mag);
+                } else {
+                    mesh.scale.z = mag;
+                }
 
                 // Save array-index references to nodes, mapping from object structure
                 mesh.source = map[edge.source.toString()];
@@ -139,6 +144,12 @@ var igraph = (function () {
                     arrow = new THREE.Mesh(self.coneGeometry, material);
                     arrow.position.copy(mesh.position);
                     arrow.lookAt(n2.position);
+                    if (edge.hasOwnProperty('arrowSize')) {
+                        arrow.scale.set(arrowSize, arrowSize, arrowSize);
+                    } else if (edge.hasOwnProperty('size')) {
+                        sqrt = Math.sqrt(edge.size);
+                        arrow.scale.set(sqrt, sqrt, sqrt);
+                    }
                     self.scene.add(arrow);
                     self.arrows.push(arrow);
                 }
