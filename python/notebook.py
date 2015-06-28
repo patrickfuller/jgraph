@@ -12,7 +12,7 @@ remote_path = ('https://rawgit.com/patrickfuller/igraph/master/'
 
 def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
          default_node_color=0x5bc0de, default_edge_color=0xaaaaaa, z=100,
-         shader='basic', optimize=True, directed=True):
+         shader='basic', optimize=True, directed=True, display_html=True):
     """Draws an interactive 3D visualization of the inputted graph.
 
     Args:
@@ -31,6 +31,8 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
             graph. Default True.
         directed: (Optional) Includes arrows on edges to indicate direction.
             Default True.
+        display_html: If True (default), embed the html in a IPython display.
+            If False, return the html as a string.
 
     Inputting an adjacency list into `data` results in a 'default' graph type.
     For more customization, use the more expressive object format.
@@ -112,7 +114,10 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
                                directed='true' if directed else 'false')
 
     # Execute js and display the results in a div (see script for more)
-    display(HTML(html))
+    if display_html:
+        display(HTML(html))
+    else:
+        return html
 
 
 def generate(data, iterations=1000, force_strength=5.0, dampening=0.01,
