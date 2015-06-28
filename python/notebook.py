@@ -12,7 +12,7 @@ remote_path = ('https://rawgit.com/patrickfuller/igraph/master/'
 
 def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
          default_node_color=0x5bc0de, default_edge_color=0xaaaaaa, z=100,
-         shader='basic', optimize=True):
+         shader='basic', optimize=True, directed=True):
     """Draws an interactive 3D visualization of the inputted graph.
 
     Args:
@@ -29,6 +29,8 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
             'basic', 'phong', or 'lambert'. Default is 'basic'.
         optimize: (Optional) Runs a force-directed layout algorithm on the
             graph. Default True.
+        directed: (Optional) Includes arrows on edges to indicate direction.
+            Default True.
 
     Inputting an adjacency list into `data` results in a 'default' graph type.
     For more customization, use the more expressive object format.
@@ -87,7 +89,8 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
                                      defaultEdgeColor: '%(edge_color)s',
                                      shader: '%(shader)s',
                                      z: %(z)d,
-                                     runOptimization: %(optimize)s},);
+                                     runOptimization: %(optimize)s,
+                                     directed: %(directed)s});
                $d.igraph.draw(%(graph)s);
 
                $d.resizable({
@@ -104,7 +107,8 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
                                node_color=default_node_color,
                                edge_color=default_edge_color, shader=shader,
                                z=z, graph=graph,
-                               optimize='true' if optimize else 'false')
+                               optimize='true' if optimize else 'false',
+                               directed='true' if directed else 'false')
 
     # Execute js and display the results in a div (see script for more)
     display(HTML(html))
