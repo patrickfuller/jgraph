@@ -63,6 +63,9 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
             node = data['nodes'][node_key]
             if 'color' in node and isinstance(node['color'], int):
                 node['color'] = hex(node['color'])
+        for edge in data['edges']:
+            if 'color' in edge and isinstance(edge['color'], int):
+                edge['color'] = hex(edge['color'])
         graph = json_formatter.dumps(data)
     else:
         # Support both files and strings
