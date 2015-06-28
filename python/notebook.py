@@ -72,8 +72,6 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
         except:
             graph = data
 
-            node['color'] = hex(node['color'])
-
     div_id = uuid.uuid4()
     html = '''<div id="graph-%(id)s"></div>
            <script type="text/javascript">
