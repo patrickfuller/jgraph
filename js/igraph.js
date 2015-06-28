@@ -10,6 +10,28 @@ if(typeof require === 'function') {
     }
 }
 
+THREE.Matrix3.prototype.getInverse = function (a, b) {
+    var c = a.elements, d = this.elements;
+    d[0] = c[10] * c[5] - c[6] * c[9];
+    d[1] = -c[10] * c[1] + c[2] * c[9];
+    d[2] = c[6] * c[1] - c[2] * c[5];
+    d[3] = -c[10] * c[4] + c[6] * c[8];
+    d[4] = c[10] * c[0] - c[2] * c[8];
+    d[5] = -c[6] * c[0] + c[2] * c[4];
+    d[6] = c[9] * c[4] - c[5] * c[8];
+    d[7] = -c[9] * c[0] + c[1] * c[8];
+    d[8] = c[5] * c[0] - c[1] * c[4];
+    c = c[0] * d[0] + c[1] * d[3] + c[2] * d[6];
+    if (c === 0) {
+        // By default, this prints a warning and does nothing. This results in
+        // slow-to-start force-directed layouts. This fixes that behavior.
+        this.multiplyScalar(10000);
+    } else {
+        this.multiplyScalar(1 / c);
+    }
+    return this;
+};
+
 var igraph = (function () {
     'use strict';
     return {
