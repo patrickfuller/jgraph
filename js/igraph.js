@@ -1,16 +1,19 @@
-/*global window, setTimeout, require, module*/
+/*global $, THREE, window, setTimeout, require, module*/
 
 // browserify support
 // More below after igraph is defined.
-if(typeof require === 'function') {
-    if(!$) var $ = require('jquery');
-    if(!THREE) {
+if (typeof require === 'function') {
+    if (!$) {
+        var $ = require('jquery');
+    }
+    if (!THREE) {
         var THREE = require('three');
         require('./TrackballControls');
     }
 }
 
 THREE.Matrix3.prototype.getInverse = function (a, b) {
+    'use strict';
     var c = a.elements, d = this.elements;
     d[0] = c[10] * c[5] - c[6] * c[9];
     d[1] = -c[10] * c[1] + c[2] * c[9];
@@ -167,7 +170,7 @@ var igraph = (function () {
                     arrow.position.copy(mesh.position);
                     arrow.lookAt(n2.position);
                     if (edge.hasOwnProperty('arrowSize')) {
-                        arrow.scale.set(arrowSize, arrowSize, arrowSize);
+                        arrow.scale.set(edge.arrowSize, edge.arrowSize, edge.arrowSize);
                     } else if (edge.hasOwnProperty('size')) {
                         sqrt = Math.sqrt(edge.size);
                         arrow.scale.set(sqrt, sqrt, sqrt);
