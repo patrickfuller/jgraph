@@ -413,7 +413,7 @@ var igraph = (function () {
             };
 
             for (i = 0; i < iterations; i += 1) {
-                setTimeout(iterate, 0);
+                setTimeout(iterate, 3 * i);
             }
         }
     };

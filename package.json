@@ -1,6 +1,6 @@
 {
   "name": "igraph",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "An embeddable webGL graph visualization library.",
   "main": "js/igraph.js",
   "directories": {
