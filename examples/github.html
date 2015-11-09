@@ -17,7 +17,7 @@
                 the "following" lists of each user. Nodes are users, and are
                 sized by their number of followers. I used myself
                 (<a href="https://github.com/patrickfuller">patrickfuller</a>)
-                as the root node of this graph, and cut off traversal at 1,000
+                as the root node of this graph, and cut off traversal at 2,500
                 users using <a href="https://gist.github.com/patrickfuller/8143294">
                 this script</a>.
             </p>
@@ -31,8 +31,12 @@
                           {runOptimization: false,
                            defaultNodeColor: 0x6a9fb5,
                            edgeSize: 0.1,
-                           z: 75});
+                           z: 150});
             $.getJSON('github.json', function (graph) {
+                // Scale followers with sphere volume
+                $.each(graph.nodes, function (name, properties) {
+                    properties.size = 0.08 * Math.pow(properties.followers, 1.0 / 3.0);
+                });
                 igraph.draw(graph);
             });
 
