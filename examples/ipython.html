@@ -177,7 +177,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="igraph-in-the-IPython-notebook">igraph in the IPython notebook<a class="anchor-link" href="#igraph-in-the-IPython-notebook">&#182;</a></h1><p>I wrote igraph to visualize graphs in 3D purely out of curiosity. I couldn't find any 3D force-directed graph libraries when I wrote it, so this happened.</p>
+<h1 id="jgraph-in-the-IPython-notebook">jgraph in the IPython notebook<a class="anchor-link" href="#jgraph-in-the-IPython-notebook">&#182;</a></h1><p>I wrote jgraph to visualize graphs in 3D purely out of curiosity. I couldn't find any 3D force-directed graph libraries when I wrote it, so this happened.</p>
 <p>It can be used with the notebook to interactively view graph data. Some graphs just look nicer in 3D. To use, send it Python objects. A simple data structure is the adjacency list.</p>
 
 </div>
@@ -188,8 +188,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">igraph</span>
-<span class="n">igraph</span><span class="o">.</span><span class="n">draw</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">jgraph</span>
+<span class="n">jgraph</span><span class="o">.</span><span class="n">draw</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
 </pre></div>
 
 </div>
@@ -206,12 +206,12 @@ div#notebook {
 <div id="graph-86bfd988-7f68-43ff-b5df-2a61e422905d"></div>
            <script type="text/javascript">
            require.config({baseUrl: '/',
-                             paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/js/build/igraph.min']}});
-           require(['igraph'], function () {
+                             paths: {jgraph: ['nbextensions/jgraph.min', 'https://rawgit.com/patrickfuller/jgraph/master/js/build/jgraph.min']}});
+           require(['jgraph'], function () {
                var $d = $('#graph-86bfd988-7f68-43ff-b5df-2a61e422905d');
                $d.width(600); $d.height(400);
-               $d.igraph = jQuery.extend({}, igraph);
-               $d.igraph.create($d, {nodeSize: 2.000000,
+               $d.jgraph = jQuery.extend({}, jgraph);
+               $d.jgraph.create($d, {nodeSize: 2.000000,
                                      edgeSize: 0.250000,
                                      defaultNodeColor: '0x5bc0de',
                                      defaultEdgeColor: '0xaaaaaa',
@@ -219,7 +219,7 @@ div#notebook {
                                      z: 100,
                                      runOptimization: true,
                                      directed: true});
-               $d.igraph.draw({
+               $d.jgraph.draw({
     "edges": [
         { "source": 1, "target": 2 },
         { "source": 2, "target": 3 },
@@ -240,7 +240,7 @@ div#notebook {
                $d.resizable({
                    aspectRatio: 600 / 400,
                    resize: function (evt, ui) {
-                       $d.igraph.renderer.setSize(ui.size.width,
+                       $d.jgraph.renderer.setSize(ui.size.width,
                                                   ui.size.height);
                    }
                });
@@ -259,7 +259,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>That works, but the graph is boring. More complex graph visualizations use node size and color to show multiple dimensions. To do this with igraph, you can use a more expressive Python data structure. Each node takes three optional parameters: color, size, and location.</p>
+<p>That works, but the graph is boring. More complex graph visualizations use node size and color to show multiple dimensions. To do this with jgraph, you can use a more expressive Python data structure. Each node takes three optional parameters: color, size, and location.</p>
 
 </div>
 </div>
@@ -293,7 +293,7 @@ div#notebook {
     <span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">igraph</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+<span class="n">jgraph</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -310,12 +310,12 @@ div#notebook {
 <div id="graph-bddafb7a-aa28-46fb-9186-7d4d6ae2986b"></div>
            <script type="text/javascript">
            require.config({baseUrl: '/',
-                             paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/js/build/igraph.min']}});
-           require(['igraph'], function () {
+                             paths: {jgraph: ['nbextensions/jgraph.min', 'https://rawgit.com/patrickfuller/jgraph/master/js/build/jgraph.min']}});
+           require(['jgraph'], function () {
                var $d = $('#graph-bddafb7a-aa28-46fb-9186-7d4d6ae2986b');
                $d.width(600); $d.height(400);
-               $d.igraph = jQuery.extend({}, igraph);
-               $d.igraph.create($d, {nodeSize: 2.000000,
+               $d.jgraph = jQuery.extend({}, jgraph);
+               $d.jgraph.create($d, {nodeSize: 2.000000,
                                      edgeSize: 0.250000,
                                      defaultNodeColor: '0x5bc0de',
                                      defaultEdgeColor: '0xaaaaaa',
@@ -323,7 +323,7 @@ div#notebook {
                                      z: 100,
                                      runOptimization: true,
                                      directed: true});
-               $d.igraph.draw({
+               $d.jgraph.draw({
     "edges": [
         { "source": "chandler", "target": "ross" },
         { "source": "monica", "target": "ross" },
@@ -350,7 +350,7 @@ div#notebook {
                $d.resizable({
                    aspectRatio: 600 / 400,
                    resize: function (evt, ui) {
-                       $d.igraph.renderer.setSize(ui.size.width,
+                       $d.jgraph.renderer.setSize(ui.size.width,
                                                   ui.size.height);
                    }
                });
@@ -379,7 +379,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">igraph</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s">&#39;miserables.json&#39;</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="k">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">jgraph</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s">&#39;miserables.json&#39;</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="k">False</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -396,12 +396,12 @@ div#notebook {
 <div id="graph-1e3c4b56-2eee-4a02-a29f-af2eac277833"></div>
            <script type="text/javascript">
            require.config({baseUrl: '/',
-                             paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/js/build/igraph.min']}});
-           require(['igraph'], function () {
+                             paths: {jgraph: ['nbextensions/jgraph.min', 'https://rawgit.com/patrickfuller/jgraph/master/js/build/jgraph.min']}});
+           require(['jgraph'], function () {
                var $d = $('#graph-1e3c4b56-2eee-4a02-a29f-af2eac277833');
                $d.width(600); $d.height(400);
-               $d.igraph = jQuery.extend({}, igraph);
-               $d.igraph.create($d, {nodeSize: 2.000000,
+               $d.jgraph = jQuery.extend({}, jgraph);
+               $d.jgraph.create($d, {nodeSize: 2.000000,
                                      edgeSize: 0.250000,
                                      defaultNodeColor: '0x5bc0de',
                                      defaultEdgeColor: '0xaaaaaa',
@@ -409,7 +409,7 @@ div#notebook {
                                      z: 100,
                                      runOptimization: true,
                                      directed: false});
-               $d.igraph.draw({
+               $d.jgraph.draw({
     "edges": [
         { "source": 1, "target": 0 },
         { "source": 2, "target": 0 },
@@ -750,7 +750,7 @@ div#notebook {
                $d.resizable({
                    aspectRatio: 600 / 400,
                    resize: function (evt, ui) {
-                       $d.igraph.renderer.setSize(ui.size.width,
+                       $d.jgraph.renderer.setSize(ui.size.width,
                                                   ui.size.height);
                    }
                });
@@ -789,7 +789,7 @@ div#notebook {
         <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
             <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">b_tree</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">leaf</span><span class="p">,</span> <span class="n">index</span><span class="p">))</span>
-<span class="n">igraph</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">b_tree</span><span class="p">,</span> <span class="n">shader</span><span class="o">=</span><span class="s">&quot;lambert&quot;</span><span class="p">,</span> <span class="n">default_node_color</span><span class="o">=</span><span class="mh">0x383294</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+<span class="n">jgraph</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">b_tree</span><span class="p">,</span> <span class="n">shader</span><span class="o">=</span><span class="s">&quot;lambert&quot;</span><span class="p">,</span> <span class="n">default_node_color</span><span class="o">=</span><span class="mh">0x383294</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -806,12 +806,12 @@ div#notebook {
 <div id="graph-a3b4d982-c75b-4636-8379-ecc8a7c87e25"></div>
            <script type="text/javascript">
            require.config({baseUrl: '/',
-                             paths: {igraph: ['nbextensions/igraph.min', 'https://rawgit.com/patrickfuller/igraph/master/js/build/igraph.min']}});
-           require(['igraph'], function () {
+                             paths: {jgraph: ['nbextensions/jgraph.min', 'https://rawgit.com/patrickfuller/jgraph/master/js/build/jgraph.min']}});
+           require(['jgraph'], function () {
                var $d = $('#graph-a3b4d982-c75b-4636-8379-ecc8a7c87e25');
                $d.width(800); $d.height(600);
-               $d.igraph = jQuery.extend({}, igraph);
-               $d.igraph.create($d, {nodeSize: 2.000000,
+               $d.jgraph = jQuery.extend({}, jgraph);
+               $d.jgraph.create($d, {nodeSize: 2.000000,
                                      edgeSize: 0.250000,
                                      defaultNodeColor: '0x383294',
                                      defaultEdgeColor: '0xaaaaaa',
@@ -819,7 +819,7 @@ div#notebook {
                                      z: 200,
                                      runOptimization: true,
                                      directed: true});
-               $d.igraph.draw({
+               $d.jgraph.draw({
     "edges": [
         { "source": 1, "target": 2 },
         { "source": 1, "target": 3 },
@@ -1082,7 +1082,7 @@ div#notebook {
                $d.resizable({
                    aspectRatio: 800 / 600,
                    resize: function (evt, ui) {
-                       $d.igraph.renderer.setSize(ui.size.width,
+                       $d.jgraph.renderer.setSize(ui.size.width,
                                                   ui.size.height);
                    }
                });
@@ -1111,7 +1111,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">help</span><span class="p">(</span><span class="n">igraph</span><span class="o">.</span><span class="n">draw</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">help</span><span class="p">(</span><span class="n">jgraph</span><span class="o">.</span><span class="n">draw</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1124,7 +1124,7 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Help on function draw in module igraph.notebook:
+<pre>Help on function draw in module jgraph.notebook:
 
 draw(data, size=(600, 400), node_size=2.0, edge_size=0.25, default_node_color=6013150, default_edge_color=11184810, z=100, shader=&apos;basic&apos;, optimize=True, directed=True)
     Draws an interactive 3D visualization of the inputted graph.
@@ -1162,7 +1162,7 @@ draw(data, size=(600, 400), node_size=2.0, edge_size=0.25, default_node_color=60
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>You may also want more control over generating the force-directed graph from an adjacency list. For that use <code>igraph.generate</code>.</p>
+<p>You may also want more control over generating the force-directed graph from an adjacency list. For that use <code>jgraph.generate</code>.</p>
 
 </div>
 </div>
@@ -1172,7 +1172,7 @@ draw(data, size=(600, 400), node_size=2.0, edge_size=0.25, default_node_color=60
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="n">help</span><span class="p">(</span><span class="n">igraph</span><span class="o">.</span><span class="n">generate</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span class="n">help</span><span class="p">(</span><span class="n">jgraph</span><span class="o">.</span><span class="n">generate</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1185,7 +1185,7 @@ draw(data, size=(600, 400), node_size=2.0, edge_size=0.25, default_node_color=60
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Help on function generate in module igraph.notebook:
+<pre>Help on function generate in module jgraph.notebook:
 
 generate(data, iterations=1000, force_strength=5.0, dampening=0.01, max_velocity=2.0, max_distance=50, is_3d=True)
     Runs a force-directed algorithm on a graph, returning a data structure.
@@ -1202,7 +1202,7 @@ generate(data, iterations=1000, force_strength=5.0, dampening=0.01, max_velocity
         is_3d: (Optional) Generates three-dimensional coordinates
     
     Outputs a json-serializable Python object. To visualize, pass the output to
-    &#96;igraph.draw(...)&#96;.
+    &#96;jgraph.draw(...)&#96;.
 
 </pre>
 </div>

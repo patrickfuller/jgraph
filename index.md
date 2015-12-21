@@ -5,33 +5,33 @@ layout: default
 Examples
 ========
 
- * [IPython notebook](http://patrickfuller.github.io/igraph/examples/ipython.html)
- * [les misérables](http://patrickfuller.github.io/igraph/examples/miserables.html)
- * [github connections](http://patrickfuller.github.io/igraph/examples/github.html)
+ * [IPython notebook](http://patrickfuller.github.io/jgraph/examples/ipython.html)
+ * [les misérables](http://patrickfuller.github.io/jgraph/examples/miserables.html)
+ * [github connections](http://patrickfuller.github.io/jgraph/examples/github.html)
 
 IPython
 =======
 
 The IPython notebook is an open-source tool poised to replace MATLAB in many
 applications. As a scientist of sorts, I'm all about it. Therefore, I made
-handles to use igraph with the notebook. Install through pip:
+handles to use jgraph with the notebook. Install through pip:
 
 ```
-pip install igraph
+pip install jgraph
 ```
 
 Open a new notebook and test the setup by typing:
 
 ```python
-import igraph
-igraph.draw([(1, 2), (2, 3), (3, 4), (4, 1), (4, 5), (5, 2)])
+import jgraph
+jgraph.draw([(1, 2), (2, 3), (3, 4), (4, 1), (4, 5), (5, 2)])
 ```
 
 into a notebook cell. You should get a paddlewheel graph as an output. You can
 use this in conjunction with other code for educational purposes (try generating
 a red-black tree!). There are three commands and some optional parameters to
 check out. Read the docstrings and check out the [associated
-example](http://patrickfuller.github.io/igraph/examples/ipython.html) for more.
+example](http://patrickfuller.github.io/jgraph/examples/ipython.html) for more.
 
 Javascript
 ==========
@@ -39,19 +39,19 @@ Javascript
 You can install through [npm](https://www.npmjs.com/):
 
 ```
-npm install igraph
+npm install jgraph
 ```
 
 Once installed, you can use with:
 
 ```javascript
-igraph.create('my-selector');
-igraph.draw(myGraph);
+jgraph.create('my-selector');
+jgraph.draw(myGraph);
 ```
 
-where `'my-selector'` is where you want to place igraph, and `myGraph` is a
+where `'my-selector'` is where you want to place jgraph, and `myGraph` is a
 javascript object. See below for more on the object structure, or just check out
-the included example. The `igraph.create()` method takes a few optional
+the included example. The `jgraph.create()` method takes a few optional
 parameters, specifying the sizes and colors of nodes, as well as force-directed
 optimization.
 
@@ -71,7 +71,7 @@ options = {
 Graph Data Format
 =================
 
-igraph takes input graph data structures as plain objects. Here's the most
+jgraph takes input graph data structures as plain objects. Here's the most
 boring graph in the world:
 
 ```javascript
@@ -104,4 +104,4 @@ optional parameters that can be specified.
 By default, the algorithm runs a force-directed layout on the graph. When
 enabled, the "location" field is optional. However, for larger graphs, you will
 want to disable this feature and pre-render the locations. Use the associated
-Python library (`igraph.generate`) to do so.
+Python library (`jgraph.generate`) to do so.

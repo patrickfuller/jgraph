@@ -2,10 +2,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>igraph</title>
+        <title>jgraph</title>
         <link href="main.css" rel="stylesheet" type="text/css" />
         <script src="../js/jquery-1.11.1.min.js"></script>
-        <script src="../js/build/igraph.min.js"></script>
+        <script src="../js/build/jgraph.min.js"></script>
     </head>
     <body>
         <div class="graph"></div>
@@ -16,22 +16,22 @@
                 I like the simple solid-color aesthetic of d3, and I wanted to replicate it in three dimensions. Here's my attempt.
             </p>
             <p>
-                If you don't like the <a id="basic">basic</a> shading, igraph
+                If you don't like the <a id="basic">basic</a> shading, jgraph
                 also supports <a id="phong">phong</a>, <a id="lambert">lambert</a>, and <a id="toon">toon</a>.
             </p>
         </div>
 
-        <a href="https://github.com/patrickfuller/igraph"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+        <a href="https://github.com/patrickfuller/jgraph"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
         <script type="text/javascript">
-            igraph.create('.graph', {directed: false});
+            jgraph.create('.graph', {directed: false});
             $.getJSON('miserables.json', function (graph) {
-                igraph.draw(graph);
+                jgraph.draw(graph);
             });
 
-            $('#toon').click(function () { igraph.setShader('toon'); });
-            $('#basic').click(function () { igraph.setShader('basic'); });
-            $('#phong').click(function () { igraph.setShader('phong'); });
-            $('#lambert').click(function () { igraph.setShader('lambert'); });
+            $('#toon').click(function () { jgraph.setShader('toon'); });
+            $('#basic').click(function () { jgraph.setShader('basic'); });
+            $('#phong').click(function () { jgraph.setShader('phong'); });
+            $('#lambert').click(function () { jgraph.setShader('lambert'); });
         </script>
     </body>
 </html>

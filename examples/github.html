@@ -2,10 +2,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>igraph</title>
+        <title>jgraph</title>
         <link href="main.css" rel="stylesheet" type="text/css" />
         <script src="../js/jquery-1.11.1.min.js"></script>
-        <script src="../js/build/igraph.min.js"></script>
+        <script src="../js/build/jgraph.min.js"></script>
     </head>
     <body>
         <div class="graph"></div>
@@ -23,11 +23,11 @@
             </p>
         </div>
 
-        <a href="https://github.com/patrickfuller/igraph"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+        <a href="https://github.com/patrickfuller/jgraph"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
         <script type="text/javascript">
 
             // Create and draw, making sure to disable layout optimization
-            igraph.create('.graph',
+            jgraph.create('.graph',
                           {runOptimization: false,
                            defaultNodeColor: 0x6a9fb5,
                            edgeSize: 0.1,
@@ -37,14 +37,14 @@
                 $.each(graph.nodes, function (name, properties) {
                     properties.size = 0.08 * Math.pow(properties.followers, 1.0 / 3.0);
                 });
-                igraph.draw(graph);
+                jgraph.draw(graph);
             });
 
             // Show name of node on hover
             var onEnter, onExit, $d, hovered;
             $d = $('.label');
             $d.hide();
-            hovered = igraph.makeMaterial(0xb7ecff);
+            hovered = jgraph.makeMaterial(0xb7ecff);
             onEnter = function (node) {
                 $d.html('<p><b>' + node.name + '</b></p>');
                 $d.show();
@@ -56,7 +56,7 @@
                 $d.hide();
                 node.material = node.defaultMaterial;
             };
-            igraph.onNodeHover(onEnter, onExit);
+            jgraph.onNodeHover(onEnter, onExit);
 
             // Move the text showing name along with the mouse
             $(document).mousemove(function (event) {
@@ -64,7 +64,7 @@
             });
 
             // Pop up a github window if a node is clicked
-            igraph.onNodeClick(function (node) {
+            jgraph.onNodeClick(function (node) {
                 window.open("https://github.com/" + node.name, "_blank");
             });
         </script>

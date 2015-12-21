@@ -1,6 +1,6 @@
 .DS_Store
 *.pyc
-build
+/build
 dist
 *.egg-info
 /node_modules
