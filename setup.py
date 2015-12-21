@@ -2,18 +2,18 @@ from setuptools import setup
 from python import __version__
 
 setup(
-    name="igraph",
+    name="jgraph",
     version=__version__,
     description="View graph data structures in the IPython notebook.",
-    url="http://github.com/patrickfuller/igraph/",
+    url="http://github.com/patrickfuller/jgraph/",
     license="MIT",
     author="Patrick Fuller",
     author_email="patrickfuller@gmail.com",
-    package_dir={'igraph': 'python',
-                 'igraph.js': 'js'},
-    package_data={'igraph.js': ['js/build/igraph.min.js']},
+    package_dir={'jgraph': 'python',
+                 'jgraph.js': 'js'},
+    package_data={'jgraph.js': ['js/build/jgraph.min.js']},
     include_package_data=True,
-    packages=['igraph', 'igraph.js'],
+    packages=['jgraph', 'jgraph.js'],
     install_requires=['ipython'],
     classifiers=[
         'Development Status :: 4 - Beta',

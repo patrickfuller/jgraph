@@ -3,11 +3,11 @@ import os
 import uuid
 from . import force_directed_layout, json_formatter
 
-filename = 'igraph.min.js'
+filename = 'jgraph.min.js'
 file_path = os.path.normpath(os.path.dirname(__file__))
 local_path = os.path.join('nbextensions', filename)
-remote_path = ('https://rawgit.com/patrickfuller/igraph/master/'
-               'js/build/igraph.min.js')
+remote_path = ('https://rawgit.com/patrickfuller/jgraph/master/'
+               'js/build/jgraph.min.js')
 
 
 def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
@@ -81,12 +81,12 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
     html = '''<div id="graph-%(id)s"></div>
            <script type="text/javascript">
            require.config({baseUrl: '/',
-                             paths: {igraph: ['%(local)s', '%(remote)s']}});
-           require(['igraph'], function () {
+                             paths: {jgraph: ['%(local)s', '%(remote)s']}});
+           require(['jgraph'], function () {
                var $d = $('#graph-%(id)s');
                $d.width(%(w)d); $d.height(%(h)d);
-               $d.igraph = jQuery.extend({}, igraph);
-               $d.igraph.create($d, {nodeSize: %(node_size)f,
+               $d.jgraph = jQuery.extend({}, jgraph);
+               $d.jgraph.create($d, {nodeSize: %(node_size)f,
                                      edgeSize: %(edge_size)f,
                                      defaultNodeColor: '%(node_color)s',
                                      defaultEdgeColor: '%(edge_color)s',
@@ -94,12 +94,12 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
                                      z: %(z)d,
                                      runOptimization: %(optimize)s,
                                      directed: %(directed)s});
-               $d.igraph.draw(%(graph)s);
+               $d.jgraph.draw(%(graph)s);
 
                $d.resizable({
                    aspectRatio: %(w)d / %(h)d,
                    resize: function (evt, ui) {
-                       $d.igraph.renderer.setSize(ui.size.width,
+                       $d.jgraph.renderer.setSize(ui.size.width,
                                                   ui.size.height);
                    }
                });
@@ -136,7 +136,7 @@ def generate(data, iterations=1000, force_strength=5.0, dampening=0.01,
         is_3d: (Optional) Generates three-dimensional coordinates
 
     Outputs a json-serializable Python object. To visualize, pass the output to
-    `igraph.draw(...)`.
+    `jgraph.draw(...)`.
     """
 
     edges = [{'source': s, 'target': t} for s, t in data]

@@ -1,8 +1,8 @@
 {
-  "name": "igraph",
-  "version": "0.1.8",
+  "name": "jgraph",
+  "version": "0.2.0",
   "description": "An embeddable webGL graph visualization library.",
-  "main": "js/igraph.js",
+  "main": "js/jgraph.js",
   "directories": {
     "example": "examples"
   },
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/patrickfuller/igraph.git"
+    "url": "https://github.com/patrickfuller/jgraph.git"
   },
   "author": "Patrick Fuller",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/patrickfuller/igraph/issues"
+    "url": "https://github.com/patrickfuller/jgraph/issues"
   },
-  "homepage": "https://github.com/patrickfuller/igraph",
+  "homepage": "https://github.com/patrickfuller/jgraph",
   "dependencies": {
     "jquery": "^2.1.4",
     "three": "^0.71.0"

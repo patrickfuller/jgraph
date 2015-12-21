@@ -1,7 +1,7 @@
 /*global $, THREE, window, setTimeout, require, module*/
 
 // browserify support
-// More below after igraph is defined.
+// More below after jgraph is defined.
 if (typeof require === 'function') {
     if (!$) {
         var $ = require('jquery');
@@ -35,12 +35,12 @@ THREE.Matrix3.prototype.getInverse = function (a, b) {
     return this;
 };
 
-var igraph = (function () {
+var jgraph = (function () {
     'use strict';
     return {
 
         /**
-         * Creates a new instance of igraph
+         * Creates a new instance of jgraph
          */
         create: function (selector, options) {
             var $s, matrix, self;
@@ -420,5 +420,5 @@ var igraph = (function () {
 }());
 
 if(typeof module === 'object') {
-    module.exports = igraph;
+    module.exports = jgraph;
 }
