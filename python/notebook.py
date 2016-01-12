@@ -1,18 +1,35 @@
-from IPython.display import HTML, display
 import os
 import uuid
-from . import force_directed_layout, json_formatter
 
-filename = 'jgraph.min.js'
+import IPython
+from IPython.display import HTML, display
+
+from jgraph import force_directed_layout, json_formatter
+
 file_path = os.path.normpath(os.path.dirname(__file__))
-local_path = os.path.join('nbextensions', filename)
+local_path = 'nbextensions/jgraph.min.js'
 remote_path = ('https://rawgit.com/patrickfuller/jgraph/master/'
                'js/build/jgraph.min.js')
+
+if IPython.release.version < '2.0':
+    raise ImportError("Old version of IPython detected. Please update.")
+else:
+    try:
+        if IPython.release.version < '4.0':
+            from IPython.html.nbextensions import install_nbextension
+        else:
+            from notebook.nbextensions import install_nbextension
+        p = os.path.join(file_path, 'js', 'build', 'jgraph.min.js')
+        install_nbextension([p] if IPython.release.version < '3.0' else p,
+                            verbose=0)
+    except:
+        pass
 
 
 def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
          default_node_color=0x5bc0de, default_edge_color=0xaaaaaa, z=100,
-         shader='basic', optimize=True, directed=True, display_html=True):
+         shader='basic', optimize=True, directed=True, display_html=True,
+         show_save=False):
     """Draws an interactive 3D visualization of the inputted graph.
 
     Args:
@@ -33,6 +50,8 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
             Default True.
         display_html: If True (default), embed the html in a IPython display.
             If False, return the html as a string.
+        show_save: If True, displays a save icon for rendering graph as an
+            image.
 
     Inputting an adjacency list into `data` results in a 'default' graph type.
     For more customization, use the more expressive object format.
@@ -42,14 +61,6 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
     if shader not in shader_options:
         raise Exception('Invalid shader! Please use one of: ' +
                         ', '.join(shader_options))
-
-    # Try using IPython >=2.0 to install js locally
-    try:
-        from IPython.html.nbextensions import install_nbextension
-        install_nbextension([os.path.join(file_path,
-                             'js/build', filename)], verbose=0)
-    except:
-        pass
 
     if isinstance(default_edge_color, int):
         default_edge_color = hex(default_edge_color)
@@ -93,7 +104,8 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
                                      shader: '%(shader)s',
                                      z: %(z)d,
                                      runOptimization: %(optimize)s,
-                                     directed: %(directed)s});
+                                     directed: %(directed)s,
+                                     showSave: %(show_save)s});
                $d.jgraph.draw(%(graph)s);
 
                $d.resizable({
@@ -111,7 +123,8 @@ def draw(data, size=(600, 400), node_size=2.0, edge_size=0.25,
                                edge_color=default_edge_color, shader=shader,
                                z=z, graph=graph,
                                optimize='true' if optimize else 'false',
-                               directed='true' if directed else 'false')
+                               directed='true' if directed else 'false',
+                               show_save='true' if show_save else 'false')
 
     # Execute js and display the results in a div (see script for more)
     if display_html:

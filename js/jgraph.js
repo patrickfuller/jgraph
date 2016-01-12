@@ -59,6 +59,8 @@ var jgraph = (function () {
                     options.defaultEdgeColor : '0xaaaaaa';
             this.runOptimization = options.hasOwnProperty('runOptimization') ? options.runOptimization : true;
             this.shader = options.hasOwnProperty('shader') ? options.shader : 'basic';
+            this.showSave = options.hasOwnProperty('showSave') ? options.showSave : false;
+            this.saveImage = false;
 
             this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
             this.renderer.setSize($s.width(), $s.height());
@@ -100,6 +102,12 @@ var jgraph = (function () {
                 self.camera.aspect = $s.width() / $s.height();
                 self.camera.updateProjectionMatrix();
             });
+
+            if (this.showSave) {
+                $s.prepend('<p class="jgraph-save" style="position: absolute; z-index: 10; opacity: 0.5; ' +
+                           'bottom: 10px; right: 28px; cursor: pointer; font-size: 36px">&#x1f4be;</p>');
+                $s.find('.jgraph-save').click(function () { self.save(); });
+            }
 
             this.animate();
         },
@@ -268,6 +276,13 @@ var jgraph = (function () {
         },
 
         /**
+         * Request to save a screenshot of the current canvas.
+         */
+        save: function () {
+            this.saveImage = true;
+        },
+
+        /**
          * Makes a custom-shaded material
          */
         makeMaterial: function (color) {
@@ -307,10 +322,22 @@ var jgraph = (function () {
          * Runs the main window animation in an infinite loop
          */
         animate: function () {
-            var self = this;
+            var self = this, link, w, h, renderWidth;
             window.requestAnimationFrame(function () {
                 return self.animate();
             });
+            if (this.saveImage) {
+                renderWidth = 2560 / (window.devicePixelRatio || 1);
+                w = this.$s.width(); h = this.$s.height();
+                this.renderer.setSize(renderWidth, renderWidth * h / w);
+                this.renderer.render(this.scene, this.camera);
+                link = document.createElement('a');
+                link.download = 'jgraph.png';
+                link.href = this.renderer.domElement.toDataURL('image/png');
+                link.click();
+                this.renderer.setSize(w, h);
+                this.saveImage = false;
+            }
             this.controls.update();
             this.renderer.render(this.scene, this.camera);
         },
