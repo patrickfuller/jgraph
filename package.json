@@ -1,6 +1,6 @@
 {
   "name": "jgraph",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "An embeddable webGL graph visualization library.",
   "main": "js/jgraph.js",
   "directories": {
